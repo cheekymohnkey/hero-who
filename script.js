@@ -16,11 +16,11 @@
   // Display hero in view mode
   function renderHeroView(hero) {
     viewMode.innerHTML = `
-      <img src="hero-images/${hero.id}.png" alt="${hero.name}" class="hero-image">
       <div class="view-section">
         <h2>${hero.name}</h2>
         <p>${hero.intro}</p>
       </div>
+      <img src="hero-images/${hero.id}.png" alt="${hero.name}" class="hero-image">
       <div class="view-section">
         <h2>Appearance</h2>
         <p>${hero.appearance.description}</p>
