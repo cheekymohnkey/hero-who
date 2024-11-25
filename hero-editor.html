@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hero Manager</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Hero Viewer and Editor</h1>
+    <div>
+      <label for="heroSelect">Choose a Hero:</label>
+      <select id="heroSelect"></select>
+    </div>
+    <div id="viewMode" class="view-mode">
+      <h2 id="viewName"></h2>
+      <p><strong>Introduction</strong><br /><span id="viewIntro"></span></p>
+      <p><strong>Appearance</strong><br /><span id="viewAppearance"></span></p>
+      <p><strong>Images</strong><br /><span id="viewImages"></span></p>
+      <p><strong>Abilities</strong><br /><span id="viewAbilities"></span></p>
+      <p><strong>Personality</strong><br /><span id="viewPersonality"></span></p>
+      <p><strong>Favorite Phrases</strong><br /><span id="viewPhrases"></span></p>
+      <p><strong>Background</strong><br /><span id="viewBackground"></span></p>
+      <p><strong>Mantra</strong><br /><span id="viewMantra"></span></p>
+      <p><strong>Outro</strong><br /><span id="viewOutro"></span></p>
+      <button id="editButton">Edit</button>
+    </div>
+    <form id="heroForm" class="hidden">
+      <div class="form-group">
+        <label for="heroName">Name:</label>
+        <input type="text" id="heroName" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="heroIntro">Introduction:</label>
+        <textarea id="heroIntro" name="intro" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="heroAppearance">Appearance Description:</label>
+        <textarea id="heroAppearance" name="appearance" rows="5"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="heroAbilities">Abilities (JSON format):</label>
+        <textarea id="heroAbilities" name="abilities" rows="5"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="heroPersonality">Personality:</label>
+        <textarea id="heroPersonality" name="personality" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="heroPhrases">Favorite Phrases (comma-separated):</label>
+        <textarea id="heroPhrases" name="phrases" rows="2"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="heroBackground">Background:</label>
+        <textarea id="heroBackground" name="background" rows="5"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="heroMantra">Mantra:</label>
+        <input type="text" id="heroMantra" name="mantra">
+      </div>
+      <div class="form-group">
+        <label for="heroOutro">Outro:</label>
+        <textarea id="heroOutro" name="outro" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="heroImages">Images (JSON format):</label>
+        <textarea id="heroImages" name="images" rows="5"></textarea>
+      </div>
+      <button type="button" id="saveHero">Save Changes</button>
+      <button type="button" id="cancelEdit">Cancel</button>
+    </form>
+    <button id="copyButton">Copy to Clipboard</button>
+    <button id="downloadButton">Download JSON</button>
+    <script src="heroes.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

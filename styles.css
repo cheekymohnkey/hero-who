@@ -1,0 +1,68 @@
+body {
+    font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+    font-weight: normal;
+    margin: 20px;
+    text-align: justify;
+    font-size: 16px;
+  }
+  select, input, textarea, button {
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+  }
+  .form-group {
+    margin-bottom: 20px;
+  }
+  textarea {
+    resize: vertical;
+  }
+  .hidden {
+    display: none;
+  }
+  .view-mode p {
+    margin: 10px 0;
+    padding: 5px 10px;
+    background: #f9f9f9;
+    border-radius: 5px;
+    box-sizing:border-box;
+  }
+  #viewMode > p > span {
+    margin-top: 0.25em;
+    display: inline-block;
+  }
+  li{
+    margin-bottom: 1em;
+  }
+
+  #viewAbilities > ol > li > p{
+    margin: 0.25em 0 0 0;
+    padding: 0;
+  }
+
+  #viewPhrases > span{
+    margin: 0.25em 0 0 0;
+    display: block;
+    font-style: italic;
+  }
+  .image-container {
+    position: relative;
+    display: inline-block;
+    width: 20%;
+  }
+  .image-container img {
+    display: block;
+    height: auto;
+    width: 100%;
+  }
+  .image-container .caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 1em;
+    box-sizing:border-box;
+  }
