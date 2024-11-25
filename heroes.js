@@ -42,6 +42,10 @@ const heroes = [
         {
           "url": "https://cdn.midjourney.com/48e2de87-8366-4fca-a968-9f46bbdee78f/0_3.png",
           "caption": "Beanie Balls vs the Giant Icecream Cone"
+        },
+        {
+          "url": "https://cdn.midjourney.com/fc2d0305-6c9a-4de4-8c67-f8af97cf2280/0_1.png",
+          "caption": "The looming threat!"
         }
       ]
     }

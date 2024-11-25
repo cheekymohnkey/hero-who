@@ -50,30 +50,82 @@ body {
     max-width: 20%;
     min-width: 300px;
   }
-  .image-container img {
-    display: block;
-    height: auto;
-    width: 100%;
+  .carousel {
+    position: relative;
+    max-width: 400px;
+    margin: 1rem auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
-  .image-container .caption {
+
+  .carousel img {
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+  }
+
+  .carousel .caption {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
     color: white;
-    padding: 10px;
+    font-size: 0.9rem;
     text-align: center;
-    font-size: 1em;
-    box-sizing:border-box;
+    padding: 0.5rem;
   }
+
+  .carousel-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Prevent blocking clicks on the image */
+  }
+  
+  .carousel-controls button {
+    pointer-events: auto; /* Allow clicks only on the buttons */
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .carousel-controls button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  .carousel-controls .prev {
+    position: absolute;
+    left: 10px;
+  }
+  
+  .carousel-controls .next {
+    position: absolute;
+    right: 10px;
+  }
+  
 
   .hero-image {
     float: right;
     width: 300px;
     max-width: 25%;
     height: auto;
-    margin: 0 0 1rem 1rem;
+    margin: 2rem 0 1rem 1rem;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }

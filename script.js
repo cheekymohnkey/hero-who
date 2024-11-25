@@ -51,18 +51,11 @@
         <h2>Outro</h2>
         <p>${hero.outro}</p>
       </div>
-      <div class="view-section">
-        <h2>Images</h2>
-        <div class="images-container">
-          ${hero.images.map(image => `
-            <div class="image-card">
-              <img src="${image.url}" alt="Hero image">
-              <div class="caption">${image.caption}</div>
-            </div>
-          `).join('')}
-        </div>
-      </div>
     `;
+    const carousel = renderCarousel(hero.images);
+      if (carousel) {
+        viewMode.appendChild(carousel);
+      }
   }
 
   // Display hero in edit mode
@@ -155,6 +148,59 @@ copyButton.addEventListener("click", async () => {
     alert("Failed to copy JSON to clipboard.");
   }
 });
+
+function renderCarousel(images) {
+  if (!images || images.length === 0) return "";
+  let currentImageIndex = 0;
+
+  const carouselContainer = document.createElement("div");
+  carouselContainer.classList.add("carousel");
+
+  const imageElement = document.createElement("img");
+  imageElement.src = images[currentImageIndex].url;
+  imageElement.alt = images[currentImageIndex].caption;
+  imageElement.addEventListener("click", () => {
+    window.open(images[currentImageIndex].url, "_blank");
+  });
+
+  const caption = document.createElement("div");
+  caption.classList.add("caption");
+  caption.textContent = images[currentImageIndex].caption;
+
+  const controls = document.createElement("div");
+  controls.classList.add("carousel-controls");
+
+  const prevButton = document.createElement("button");
+  prevButton.classList.add("prev");
+  prevButton.textContent = "<";
+  prevButton.addEventListener("click", () => {
+    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+    updateCarousel();
+  });
+
+  const nextButton = document.createElement("button");
+  nextButton.classList.add("next");
+  nextButton.textContent = ">";
+  nextButton.addEventListener("click", () => {
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    updateCarousel();
+  });
+
+  controls.appendChild(prevButton);
+  controls.appendChild(nextButton);
+
+  carouselContainer.appendChild(imageElement);
+  carouselContainer.appendChild(caption);
+  carouselContainer.appendChild(controls);
+
+  function updateCarousel() {
+    imageElement.src = images[currentImageIndex].url;
+    imageElement.alt = images[currentImageIndex].caption;
+    caption.textContent = images[currentImageIndex].caption;
+  }
+
+  return carouselContainer;
+}
 
   // Load first hero on page load
   heroSelect.value = 0;
