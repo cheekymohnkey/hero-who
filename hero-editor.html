@@ -9,22 +9,13 @@
 <body>
     <h1>Hero Viewer and Editor</h1>
     <div>
-      <label for="heroSelect">Choose a Hero:</label>
+      <label style="display: block;text-align: left" for="heroSelect">Choose a Hero:</label>
       <select id="heroSelect"></select>
     </div>
-    <div id="viewMode" class="view-mode">
-      <h2 id="viewName"></h2>
-      <p><strong>Introduction</strong><br /><span id="viewIntro"></span></p>
-      <p><strong>Appearance</strong><br /><span id="viewAppearance"></span></p>
-      <p><strong>Images</strong><br /><span id="viewImages"></span></p>
-      <p><strong>Abilities</strong><br /><span id="viewAbilities"></span></p>
-      <p><strong>Personality</strong><br /><span id="viewPersonality"></span></p>
-      <p><strong>Favorite Phrases</strong><br /><span id="viewPhrases"></span></p>
-      <p><strong>Background</strong><br /><span id="viewBackground"></span></p>
-      <p><strong>Mantra</strong><br /><span id="viewMantra"></span></p>
-      <p><strong>Outro</strong><br /><span id="viewOutro"></span></p>
-      <button id="editButton">Edit</button>
-    </div>
+    <div id="viewMode"></div>
+    <button id="editButton">Edit</button>
+  <button id="downloadButton">Download JSON</button>
+  <button id="copyButton">Copy to Clipboard</button>
     <form id="heroForm" class="hidden">
       <div class="form-group">
         <label for="heroName">Name:</label>

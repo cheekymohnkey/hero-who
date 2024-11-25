@@ -14,17 +14,55 @@
   });
 
   // Display hero in view mode
-  function displayHeroView(hero) {
-    document.getElementById('viewName').textContent = hero.name;
-    document.getElementById('viewIntro').textContent = hero.intro;
-    document.getElementById('viewAppearance').textContent = hero.appearance.description;
-    document.getElementById('viewAbilities').innerHTML = "<ol>" + hero.abilities.map(a => `<li><strong>${a.name}</strong><p>${a.description}</p></li>`).join('') + "</ol>";
-    document.getElementById('viewPersonality').textContent = hero.personality;
-    document.getElementById('viewPhrases').innerHTML = hero.favouritePhrases.map(a => `<span>${a}</span>`).join('');
-    document.getElementById('viewBackground').textContent = hero.background;
-    document.getElementById('viewMantra').textContent = hero.mantra;
-    document.getElementById('viewOutro').textContent = hero.outro;
-    document.getElementById('viewImages').innerHTML = hero.images.map(a => `<div class="image-container"><img src="${a.url}" /><div class="caption">${a.caption}</div></div>`).join('');
+  function renderHeroView(hero) {
+    viewMode.innerHTML = `
+      <img src="hero-images/${hero.id}.png" alt="${hero.name}" class="hero-image">
+      <div class="view-section">
+        <h2>${hero.name}</h2>
+        <p>${hero.intro}</p>
+      </div>
+      <div class="view-section">
+        <h2>Appearance</h2>
+        <p>${hero.appearance.description}</p>
+      </div>
+      <div class="view-section">
+        <h2>Abilities</h2>
+        <ul>
+          ${hero.abilities.map(ability => `<li><strong>${ability.name}:</strong> ${ability.description}</li>`).join('')}
+        </ul>
+      </div>
+      <div class="view-section">
+        <h2>Personality</h2>
+        <p>${hero.personality}</p>
+      </div>
+      <div class="view-section">
+        <h2>Favourite Phrases</h2>
+        <ul>${hero.favouritePhrases.map(phrase => `<li>"${phrase}"</li>`).join('')}</ul>
+      </div>
+      <div class="view-section">
+        <h2>Background</h2>
+        <p>${hero.background}</p>
+      </div>
+      <div class="view-section">
+        <h2>Mantra</h2>
+        <p><em>${hero.mantra}</em></p>
+      </div>
+      <div class="view-section">
+        <h2>Outro</h2>
+        <p>${hero.outro}</p>
+      </div>
+      <div class="view-section">
+        <h2>Images</h2>
+        <div class="images-container">
+          ${hero.images.map(image => `
+            <div class="image-card">
+              <img src="${image.url}" alt="Hero image">
+              <div class="caption">${image.caption}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
   }
 
   // Display hero in edit mode
@@ -54,10 +92,9 @@
   }
 
   // Load selected hero
-  heroSelect.addEventListener('change', () => {
-    const selectedHero = heroes[heroSelect.value];
-    displayHeroView(selectedHero);
-    switchToViewMode();
+  heroSelect.addEventListener("change", (e) => {
+    const selectedHero = heroes[e.target.value];
+    renderHeroView(selectedHero);
   });
 
   // Edit button click
@@ -81,7 +118,7 @@
     selectedHero.outro = document.getElementById('heroOutro').value;
     selectedHero.images = JSON.parse(document.getElementById('heroImages').value);
 
-    displayHeroView(selectedHero);
+    renderHeroView(selectedHero);
     switchToViewMode();
   });
 
@@ -121,4 +158,4 @@ copyButton.addEventListener("click", async () => {
 
   // Load first hero on page load
   heroSelect.value = 0;
-  displayHeroView(heroes[0]);
+  renderHeroView(heroes[0]);
