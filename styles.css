@@ -71,6 +71,7 @@ body {
   .hero-image {
     float: right;
     width: 300px;
+    max-width: 25%;
     height: auto;
     margin: 0 0 1rem 1rem;
     border-radius: 10px;
