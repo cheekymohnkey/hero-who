@@ -1,4 +1,4 @@
-const heroSelect = document.getElementById("heroSelect");
+    const heroSelect = document.getElementById("heroSelect");
     const viewMode = document.getElementById("viewMode");
 
     function renderHeroOptions() {
@@ -53,7 +53,16 @@ const heroSelect = document.getElementById("heroSelect");
       carouselContainer.appendChild(imageElement);
       carouselContainer.appendChild(caption);
       carouselContainer.appendChild(controls);
-
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowRight') {
+          currentImageIndex = (currentImageIndex + 1) % images.length;
+          updateCarousel();
+        } else if (event.key === 'ArrowLeft') {
+          currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+          updateCarousel();
+        }
+    });
+    
       function updateCarousel() {
         imageElement.src = images[currentImageIndex].url;
         imageElement.alt = images[currentImageIndex].caption;
@@ -112,6 +121,37 @@ const heroSelect = document.getElementById("heroSelect");
       const selectedHero = heroes[e.target.value];
       renderHeroView(selectedHero);
     });
+
+    // Toggle between View and Edit modes
+function toggleEditMode() {
+  const viewModeElements = document.querySelectorAll('.view-mode');
+  const editModeElements = document.querySelectorAll('.edit-mode');
+  const isEditing = viewModeElements[0].classList.contains('hidden');
+
+  // Toggle visibility
+  viewModeElements.forEach(el => el.classList.toggle('hidden'));
+  editModeElements.forEach(el => el.classList.toggle('hidden'));
+
+  // Update button text
+  const editButton = document.getElementById('editButton');
+  editButton.textContent = isEditing ? 'Edit' : 'View';
+}
+
+// Copy JSON to clipboard
+function copyToClipboard() {
+  navigator.clipboard.writeText(JSON.stringify(heroes, null, 2))
+      .then(() => alert('Heroes JSON copied to clipboard!'))
+      .catch(err => alert('Failed to copy JSON: ' + err));
+}
+
+// Download JSON
+function downloadJSON() {
+  const jsonBlob = new Blob([JSON.stringify(heroes, null, 2)], { type: 'application/json' });
+  const downloadLink = document.createElement('a');
+  downloadLink.href = URL.createObjectURL(jsonBlob);
+  downloadLink.download = 'heroes.json';
+  downloadLink.click();
+}
 
     // Initialize
     renderHeroOptions();
