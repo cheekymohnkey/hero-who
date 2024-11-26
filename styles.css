@@ -1,131 +1,143 @@
+/* General Styles */
 body {
-    font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
-    font-weight: normal;
-    margin: 20px;
-    text-align: justify;
-    font-size: 16px;
-  }
-  select, input, textarea, button {
-    margin: 10px 0;
-    padding: 10px;
-    width: 100%;
-  }
-  .form-group {
-    margin-bottom: 20px;
-  }
-  textarea {
-    resize: vertical;
-  }
-  .hidden {
-    display: none;
-  }
-  .view-mode p {
-    margin: 10px 0;
-    padding: 5px 10px;
-    background: #f9f9f9;
-    border-radius: 5px;
-    box-sizing:border-box;
-  }
-  #viewMode > p > span {
-    margin-top: 0.25em;
-    display: inline-block;
-  }
-  li{
-    margin-bottom: 1em;
-  }
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #f4f4f9;
+  color: #333;
+  padding: 20px;
+}
 
-  #viewAbilities > ol > li > p{
-    margin: 0.25em 0 0 0;
-    padding: 0;
-  }
+.container {
+  width: 100%;
+  max-width: 1200px;
+  background: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  overflow: hidden;
+}
 
-  #viewPhrases > span{
-    margin: 0.25em 0 0 0;
-    display: block;
-    font-style: italic;
-  }
-  .image-container {
-    position: relative;
-    display: inline-block;
-    max-width: 20%;
-    min-width: 300px;
-  }
-  .carousel {
-    position: relative;
-    max-width: 400px;
-    margin: 1rem auto;
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
+/* Hero Image Floating */
+.hero-image {
+  float: right;
+  width: 250px;
+  height: auto;
+  margin-left: 20px;
+  margin-top: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
 
-  .carousel img {
-    width: 100%;
-    display: block;
-    border-radius: 10px;
-  }
+/* Hero Details */
+.hero-details {
+  overflow: hidden; /* Ensure wrapping around the floated image */
+}
 
-  .carousel .caption {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-    font-size: 0.9rem;
-    text-align: center;
-    padding: 0.5rem;
-  }
+.hero-details h1 {
+  font-size: 2rem;
+  margin: 0 0 10px;
+}
 
-  .carousel-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    transform: translateY(-50%);
-    pointer-events: none; /* Prevent blocking clicks on the image */
-  }
-  
-  .carousel-controls button {
-    pointer-events: auto; /* Allow clicks only on the buttons */
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    font-size: 1.5rem;
-    line-height: 1;
-    cursor: pointer;
-    padding: 0.5rem;
-    border-radius: 50%;
-    width: 2.5rem;
-    height: 2.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .carousel-controls button:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-  }
-  
-  .carousel-controls .prev {
-    position: absolute;
-    left: 10px;
-  }
-  
-  .carousel-controls .next {
-    position: absolute;
-    right: 10px;
-  }
-  
+.hero-details p {
+  margin: 10px 0;
+}
 
+/* Hero Field Labels */
+.hero-field {
+  margin: 20px 0;
+}
+
+.hero-field strong {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+/* Carousel Styles */
+.carousel {
+  position: relative;
+  margin: 20px 0;
+  text-align: left;
+}
+
+.carousel img {
+  max-width: 50%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.carousel .caption {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Carousel Controls */
+.carousel-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  width: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* Prevent blocking clicks on the image */
+}
+
+.carousel-controls button {
+  pointer-events: auto; /* Allow clicks on buttons */
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-controls button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-controls .prev {
+  position: absolute;
+  left: 10px;
+}
+
+.carousel-controls .next {
+  position: absolute;
+  right: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .hero-image {
-    float: right;
-    width: 300px;
-    max-width: 25%;
-    height: auto;
-    margin: 2rem 0 1rem 1rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    float: none;
+    margin: 0 auto 20px;
+    display: block;
   }
+
+  .carousel-controls button {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.2rem;
+  }
+
+  .hero-details {
+    text-align: center;
+  }
+}
