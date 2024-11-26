@@ -73,7 +73,7 @@ body {
 }
 
 .carousel img {
-  max-width: 50%;
+  max-width: 33%;
   height: auto;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -92,7 +92,7 @@ body {
   align-items: center;
   position: absolute;
   top: 50%;
-  width: 50%;
+  width: 33%;
   transform: translateY(-50%);
   pointer-events: none; /* Prevent blocking clicks on the image */
 }
