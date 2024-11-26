@@ -235,7 +235,7 @@ const heroes = [
           "caption": "Crystal training dojo."
         },
         {
-          "url": "https://cdn.midjourney.com/2cd58ae1-ae17-4d3f-95cb-96e951d785e1/0_0.png".
+          "url": "https://cdn.midjourney.com/2cd58ae1-ae17-4d3f-95cb-96e951d785e1/0_0.png",
           "caption": "Everywhere I go I stand out."
         },
         {
