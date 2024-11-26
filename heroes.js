@@ -93,7 +93,7 @@ const heroes = [
           "caption": "Cafe's aren't made for Beanie Balls"
         },
         {
-          "url": "https://cdn.midjourney.com/0d83c81e-e531-42e2-bd85-d5c3a96fdc05/0_1.png",
+          "url": "https://cdn.midjourney.com/0d83c81e-e531-42e2-bd85-d5c3a96fdc05/0_2.png",
           "caption": "A moment of reflection."
         },
         {
