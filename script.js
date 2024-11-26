@@ -29,14 +29,14 @@ function setupCarouselKeyboardNavigation(carousel) {
     }
   }
 }
-
+let currentImageIndex = 0;
 function renderCarousel(images) {
   if (!images || images.length === 0) return "";
-  let currentImageIndex = 0;
+
 
   const carouselContainer = document.createElement("div");
   carouselContainer.classList.add("carousel");
-
+  setupCarouselKeyboardNavigation(carouselContainer);
   const imageElement = document.createElement("img");
   imageElement.src = images[currentImageIndex].url;
   imageElement.alt = images[currentImageIndex].caption;
@@ -83,149 +83,266 @@ function renderCarousel(images) {
     }
 });
 
-  function updateCarousel() {
-    imageElement.src = images[currentImageIndex].url;
-    imageElement.alt = images[currentImageIndex].caption;
-    caption.textContent = images[currentImageIndex].caption;
-  }
-  setupCarouselKeyboardNavigation(carouselContainer);
+function updateCarousel() {
+  imageElement.src = images[currentImageIndex].url;
+  imageElement.alt = images[currentImageIndex].caption;
+  caption.textContent = images[currentImageIndex].caption;
+}
+  
   return carouselContainer;
 }
 
+// Function to render View Mode
 function renderHeroView(hero) {
+  const viewMode = document.getElementById('viewMode');
   viewMode.innerHTML = `
-    <div class="view-section">
+    <div class="hero-info">
       <h1>${hero.name}</h1>
       <p>${hero.intro}</p>
-    </div>
-     <img src="hero-images/${hero.id}.png" alt="${hero.name}" class="hero-image">
-    <div class="view-section hero-field">
-      <strong>Appearance:</strong>
-      <p>${hero.appearance.description}</p>
-    </div>
-    <div class="view-section hero-field">
-      <strong>Abilities:</strong>
-      <ol>
-        ${hero.abilities.map(ability => `<li><strong>${ability.name}:</strong> ${ability.description}</li>`).join('')}
-      </ol>
-    </div>
-    <div class="view-section hero-field">
-      <strong>Personality:</strong>
-      <p>${hero.personality}</p>
-    </div>
-    <div class="view-section hero-field">
-      <strong>Favourite Phrases:</strong>
-      <ul>${hero.favouritePhrases.map(phrase => `<li>"${phrase}"</li>`).join('')}</ul>
-    </div>
-    <div class="view-section hero-field">
-      <strong>Background:</strong>
-      <p>${hero.background}</p>
-    </div>
-    <div class="view-section hero-field">
-      <strong>Mantra:</strong>
-      <p><em>${hero.mantra}</em></p>
-    </div>
-    <div class="view-section hero-field">
-      <strong>Outro:</strong>
-      <p>${hero.outro}</p>
+      <img src="hero-images/${hero.id}.png" class="hero-image" />
+      <div class="appearance">
+        <h2>Appearance</h2>
+        <p>${hero.appearance.description}</p>
+      </div>
+      <div class="abilities">
+        <h2>Abilities</h2>
+        <ul>
+          ${hero.abilities.map(ability => `
+            <li>
+              <strong>${ability.name}:</strong> ${ability.description}
+            </li>
+          `).join('')}
+        </ul>
+      </div>
+      <div class="personality">
+        <h2>Personality</h2>
+        <p>${hero.personality}</p>
+      </div>
+      <div class="favourite-phrases">
+        <h2>Favourite Phrases</h2>
+        <ul>
+          ${hero.favouritePhrases.map(phrase => `<li>${phrase}</li>`).join('')}
+        </ul>
+      </div>
+      <div class="background">
+        <h2>Background</h2>
+        <p>${hero.background}</p>
+      </div>
+      <div class="mantra">
+        <h2>Mantra</h2>
+        <p>${hero.mantra}</p>
+      </div>
+      <div class="outro">
+        <h2>Outro</h2>
+        <p>${hero.outro}</p>
+      </div>
+      
     </div>
   `;
-
   const carousel = renderCarousel(hero.images);
   if (carousel) {
     viewMode.appendChild(carousel);
   }
 }
 
-function renderEditHero(hero) {
-  const editMode = document.getElementById("editMode");
+// Function to render Edit Mode
+function renderEditMode(hero) {
+  const editMode = document.getElementById('editMode');
   editMode.innerHTML = `
     <div class="edit-section">
-      <label>
-        Name: <input type="text" id="editName" value="${hero.name}">
-      </label>
+      <label for="editName">Name:</label>
+      <input type="text" id="editName" value="${hero.name}" />
     </div>
     <div class="edit-section">
-      <label>
-        Intro: <textarea id="editIntro">${hero.intro}</textarea>
-      </label>
+      <label for="editIntro">Introduction:</label>
+      <textarea id="editIntro">${hero.intro}</textarea>
     </div>
     <div class="edit-section">
-      <label>
-        Appearance: <textarea id="editAppearance">${hero.appearance.description}</textarea>
-      </label>
+      <label for="editAppearance">Appearance:</label>
+      <textarea id="editAppearance">${hero.appearance.description}</textarea>
     </div>
     <div class="edit-section">
-      <label>
-        Personality: <textarea id="editPersonality">${hero.personality}</textarea>
-      </label>
+      <label for="editAbilities">Abilities:</label>
+      <div id="abilitiesList">
+        ${hero.abilities.map((ability, index) => `
+          <div class="ability-item">
+            <input type="text" class="ability-name" data-index="${index}" value="${ability.name}" placeholder="Ability Name" />
+            <textarea class="ability-description" data-index="${index}" placeholder="Ability Description">${ability.description}</textarea>
+            <button class="remove-ability" data-index="${index}">Remove</button>
+          </div>
+        `).join('')}
+      </div>
+      <button id="addAbilityButton">Add Ability</button>
     </div>
     <div class="edit-section">
-      <label>
-        Favourite Phrases: <textarea id="editPhrases">${hero.favouritePhrases.join("\n")}</textarea>
-      </label>
+      <label for="editFavouritePhrases">Favourite Phrases:</label>
+      <div id="phrasesList">
+        ${hero.favouritePhrases.map((phrase, index) => `
+          <div class="phrase-item">
+            <input type="text" class="phrase-text" data-index="${index}" value="${phrase}" placeholder="Phrase" />
+            <button class="remove-phrase" data-index="${index}">Remove</button>
+          </div>
+        `).join('')}
+      </div>
+      <button id="addPhraseButton">Add Phrase</button>
     </div>
     <div class="edit-section">
-      <label>
-        Background: <textarea id="editBackground">${hero.background}</textarea>
-      </label>
+      <label for="editImages">Images:</label>
+      <div id="imageList">
+        ${hero.images.map((img, index) => `
+          <div class="image-item">
+            <input type="text" class="image-url" data-index="${index}" value="${img.url}" placeholder="Image URL" />
+            <input type="text" class="image-caption" data-index="${index}" value="${img.caption}" placeholder="Caption" />
+            <button class="remove-image" data-index="${index}">Remove</button>
+          </div>
+        `).join('')}
+      </div>
+      <button id="addImageButton">Add Image</button>
     </div>
-    <div class="edit-section">
-      <label>
-        Mantra: <input type="text" id="editMantra" value="${hero.mantra}">
-      </label>
-    </div>
-    <div class="edit-section">
-      <label>
-        Outro: <textarea id="editOutro">${hero.outro}</textarea>
-      </label>
-    </div>
-    <button onclick="saveHero()">Save Changes</button>
   `;
-}
 
-function saveHero() {
-  const selectedHeroIndex = heroSelect.value;
-  const selectedHero = heroes[selectedHeroIndex];
-
-  // Update hero properties from inputs
-  selectedHero.name = document.getElementById("editName").value;
-  selectedHero.intro = document.getElementById("editIntro").value;
-  selectedHero.appearance.description = document.getElementById("editAppearance").value;
-  selectedHero.personality = document.getElementById("editPersonality").value;
-  selectedHero.favouritePhrases = document.getElementById("editPhrases").value.split("\n");
-  selectedHero.background = document.getElementById("editBackground").value;
-  selectedHero.mantra = document.getElementById("editMantra").value;
-  selectedHero.outro = document.getElementById("editOutro").value;
-
-  // Refresh view mode
-  renderHeroView(selectedHero);
-  toggleEditMode();
+  // Attach event listeners
+  document.getElementById('addAbilityButton').addEventListener('click', addAbilityField);
+  document.getElementById('addPhraseButton').addEventListener('click', addPhraseField);
+  document.getElementById('addImageButton').addEventListener('click', addImageField);
+  document.querySelectorAll('.remove-ability').forEach(btn => btn.addEventListener('click', removeAbilityField));
+  document.querySelectorAll('.remove-phrase').forEach(btn => btn.addEventListener('click', removePhraseField));
+  document.querySelectorAll('.remove-image').forEach(btn => btn.addEventListener('click', removeImageField));
 }
 
 
 heroSelect.addEventListener("change", (e) => {
   const selectedHero = heroes[e.target.value];
   renderHeroView(selectedHero);
+  renderEditMode(selectedHero);
 });
 
-// Toggle between View and Edit modes
-function toggleEditMode() {
-  const viewMode = document.getElementById("viewMode");
-  const editMode = document.getElementById("editMode");
-  const editButton = document.getElementById("editButton");
+// Function to add a new ability field
+function addAbilityField() {
+  const abilitiesList = document.getElementById('abilitiesList');
+  const newAbilityIndex = abilitiesList.children.length;
+  const newAbilityItem = document.createElement('div');
+  newAbilityItem.classList.add('ability-item');
+  newAbilityItem.innerHTML = `
+    <input type="text" class="ability-name" data-index="${newAbilityIndex}" placeholder="Ability Name" />
+    <textarea class="ability-description" data-index="${newAbilityIndex}" placeholder="Ability Description"></textarea>
+    <button class="remove-ability" data-index="${newAbilityIndex}">Remove</button>
+  `;
+  abilitiesList.appendChild(newAbilityItem);
 
-  if (editMode.classList.contains("hidden")) {
-    renderEditHero(heroes[heroSelect.value]);
-    viewMode.classList.add("hidden");
-    editMode.classList.remove("hidden");
-    editButton.textContent = "View";
+  // Attach event listener to remove button
+  newAbilityItem.querySelector('.remove-ability').addEventListener('click', removeAbilityField);
+}
+
+// Function to remove an ability field
+function removeAbilityField(event) {
+  const index = event.target.getAttribute('data-index');
+  const abilityItem = document.querySelector(`.ability-item [data-index="${index}"]`).closest('.ability-item');
+  abilityItem.remove();
+}
+
+// Function to add a new phrase field
+function addPhraseField() {
+  const phrasesList = document.getElementById('phrasesList');
+  const newPhraseIndex = phrasesList.children.length;
+  const newPhraseItem = document.createElement('div');
+  newPhraseItem.classList.add('phrase-item');
+  newPhraseItem.innerHTML = `
+    <input type="text" class="phrase-text" data-index="${newPhraseIndex}" placeholder="Phrase" />
+    <button class="remove-phrase" data-index="${newPhraseIndex}">Remove</button>
+  `;
+  phrasesList.appendChild(newPhraseItem);
+
+  // Attach event listener to remove button
+  newPhraseItem.querySelector('.remove-phrase').addEventListener('click', removePhraseField);
+}
+
+// Function to remove a phrase field
+function removePhraseField(event) {
+  const index = event.target.getAttribute('data-index');
+  const phraseItem = document.querySelector(`.phrase-item [data-index="${index}"]`).closest('.phrase-item');
+  phraseItem.remove();
+}
+
+// Function to add a new image field
+function addImageField() {
+  const imageList = document.getElementById('imageList');
+  const newImageIndex = imageList.children.length;
+  const newImageItem = document.createElement('div');
+  newImageItem.classList.add('image-item');
+  newImageItem.innerHTML = `
+    <input type="text" class="image-url" data-index="${newImageIndex}" placeholder="Image URL" />
+    <input type="text" class="image-caption" data-index="${newImageIndex}" placeholder="Caption" />
+    <button class="remove-image" data-index="${newImageIndex}">Remove</button>
+  `;
+  imageList.appendChild(newImageItem);
+
+  // Attach event listener to remove button
+  newImageItem.querySelector('.remove-image').addEventListener('click', removeImageField);
+}
+
+// Function to remove an image field
+function removeImageField(event) {
+  const index = event.target.getAttribute('data-index');
+  const imageItem = document.querySelector(`.image-item [data-index="${index}"]`).closest('.image-item');
+  imageItem.remove();
+}
+
+// Function to save changes back to the hero object
+function saveChanges() {
+  const hero = heroes[heroSelect.value];
+
+  // Update basic fields
+  hero.name = document.getElementById('editName').value;
+  hero.intro = document.getElementById('editIntro').value;
+  hero.appearance.description = document.getElementById('editAppearance').value;
+
+  // Update abilities
+  hero.abilities = Array.from(document.querySelectorAll('.ability-item')).map(abilityItem => ({
+    name: abilityItem.querySelector('.ability-name').value,
+    description: abilityItem.querySelector('.ability-description').value
+  }));
+
+  // Update favourite phrases
+  hero.favouritePhrases = Array.from(document.querySelectorAll('.phrase-item')).map(phraseItem =>
+    phraseItem.querySelector('.phrase-text').value
+  );
+
+  // Update images
+  hero.images = Array.from(document.querySelectorAll('.image-item')).map(imageItem => ({
+    url: imageItem.querySelector('.image-url').value,
+    caption: imageItem.querySelector('.image-caption').value
+  }));
+
+  // Save completed, switch back to view mode
+  toggleEditMode(false);
+}
+
+// Function to toggle between Edit Mode and View Mode
+function toggleEditMode(isEditing) {
+  const viewMode = document.getElementById('viewMode');
+  const editMode = document.getElementById('editMode');
+  const saveButton = document.getElementById('saveButton');
+  const editButton = document.getElementById('editButton');
+
+  if (isEditing) {
+    renderEditMode(heroes[heroSelect.value]);
+    viewMode.style.display = 'none';
+    editMode.style.display = 'block';
+    saveButton.style.display = 'block';
+    editButton.style.display = 'none';
   } else {
-    viewMode.classList.remove("hidden");
-    editMode.classList.add("hidden");
-    editButton.textContent = "Edit";
+    renderHeroView(heroes[heroSelect.value]);
+    viewMode.style.display = 'block';
+    editMode.style.display = 'none';
+    saveButton.style.display = 'none';
+    editButton.style.display = 'block';
   }
 }
+
+// Attach save and edit button functionality
+document.getElementById('saveButton').addEventListener('click', saveChanges);
+document.getElementById('editButton').addEventListener('click', () => toggleEditMode(true));
 
 // Copy JSON to clipboard
 function copyToClipboard() {
