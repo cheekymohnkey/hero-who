@@ -159,7 +159,7 @@ const heroes = [
         },
         {
           "url": "https://cdn.midjourney.com/68bee1da-7fe0-4bd1-983b-09326d3a5de7/0_1.png",
-          "caption": "Jungle acrobatics. Leaping from teee to tree is one of my favourite things.""
+          "caption": "Jungle acrobatics. Leaping from teee to tree is one of my favourite things."
         },
         {
           "url": "https://cdn.midjourney.com/d4f5f6f8-1038-4e5d-bf93-30447170ed1e/0_2.png",
