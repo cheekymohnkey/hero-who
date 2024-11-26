@@ -73,8 +73,7 @@ const heroes = [
       "personality": "Beanie Balls is as charming as he is round, with an endless supply of optimism and mischief. He thrives on making others smile, whether it’s by bouncing into action or cracking a joke. His playful antics are a constant source of amusement and morale for his teammates, but his cheerfulness doesn’t mean he lacks courage. When the situation gets serious, Beanie Balls transforms his boundless energy into fierce determination, proving that his size is no limitation to his heroism. He’s fiercely loyal to his friends and will always spring into action to protect them, no matter the odds.",
       "favouritePhrases": [
         "Small but mighty!",
-        "Bounce back",
-        "no matter what!",
+        "Bounce back, no matter what!",
         "Joy is the best weapon."
       ],
       "background": "Beanie Balls was created in a magical workshop by a kind-hearted inventor who believed in the power of joy. Imbued with a spark of life and boundless energy, Beanie Balls quickly became a beloved companion to everyone in his village. However, when danger threatened his home, he didn’t hesitate to step into the role of protector. Over time, Beanie Balls developed his unique, bouncy fighting style, using his compact size and surprising strength to outwit and overpower foes. Though he’s travelled far from his birthplace, he carries the same mission: to spread joy and protect those in need, one bounce at a time.",
