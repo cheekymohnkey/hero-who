@@ -99,6 +99,18 @@ const heroes = [
       {
         "url": "https://cdn.midjourney.com/54eb53af-4401-4203-9cd8-9b378af22c06/0_3.png",
         "caption": "Beanie Balls Battles Beastly Bots"
+      },
+      {
+        "url": "https://cdn.midjourney.com/8040f0fb-168d-40f0-81fe-e0c18a1b09d0/0_0.png",
+        "caption": "Beanie Balls tiny arms makes shopping super tricky."
+      },
+      {
+        "url": "https://cdn.midjourney.com/12a78464-79ab-4db1-b4ab-4ee08d9b6452/0_0.png",
+        "caption": "Little did anyone know, but Beanie Balls could also pretend to be a hot air balloon."
+      },
+      {
+        "url": "https://cdn.midjourney.com/94d894b5-ac73-4b53-b1e4-38910350426e/0_2.png",
+        "caption": "That time Beanie Balls and friends tried inline skating..."
       }
     ]
   },

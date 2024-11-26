@@ -230,3 +230,42 @@ body {
 .hidden {
   display: none;
 }
+
+.edit-section {
+  margin-bottom: 20px;
+}
+
+.edit-section label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.edit-section input,
+.edit-section textarea {
+  width: 100%;
+  max-width: 600px;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.edit-section textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+button:hover {
+  background-color: #218838;
+}
