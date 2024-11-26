@@ -136,6 +136,13 @@ body {
     display: block;
   }
 
+  .carousel img {
+  max-width: 100%;
+  }
+
+  .carousel-controls {
+    width: 100%;
+  }
   .carousel-controls button {
     width: 2rem;
     height: 2rem;
