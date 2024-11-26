@@ -255,5 +255,66 @@ const heroes = [
           "caption": "Rescue on the rainbow bridge."
         }
   ]
+},
+{
+  "id": "fa28f27f-90c3-4a9d-9b33-3b9a070b663b",
+  "name": "Snappaw",
+  "intro": "Snappaw is an adorable yet cunning hero whose agility and keen observational skills make them invaluable in any adventure. Despite their small size, they are a force to be reckoned with, zipping through the battlefield with unmatched speed and precision.",
+  "appearance": {
+    "description": "Snappaw is a tiny, sugar glider-like creature with soft fur that glistens faintly under moonlight. Their oversized, curious eyes shine with a mischievous glint, and their wings are feathered with butterfly-like patterns, reflecting their boundless curiosity and sharp intelligence. Snappaw’s small claws are sharp and dexterous, perfect for climbing, gripping, and performing intricate tasks. They often wear a miniature bandolier filled with tiny tools and gadgets, from smoke pellets to tiny throwing darts. Their expression is perpetually curious, with a tiny grin that hints at their playful, daring personality. When in motion, Snappaw is a blur of colorful fur and glowing wings, darting through the air with breathtaking speed and elegance."
+  },
+  "abilities": [
+    {
+      "name": "Sky Glide",
+      "description": "Snappaw’s signature ability allows them to soar gracefully through the air, covering long distances silently. This makes them perfect for scouting ahead or escaping dangerous situations."
+    },
+    {
+      "name": "Quick Claw",
+      "description": "With a sudden burst of speed, Snappaw can slash at an enemy or sever ropes, vines, or other obstacles with their sharp claws."
+    },
+    {
+      "name": "Shadow Flicker",
+      "description": "Snappaw can blend into their surroundings, becoming nearly invisible for a short time. This ability allows them to evade detection or set up surprise attacks."
+    },
+    {
+      "name": "Keen Senses",
+      "description": "Snappaw’s heightened awareness lets them detect traps, hidden foes, or subtle environmental changes. They can relay this information to their allies, giving the team a tactical edge."
+    },
+    {
+      "name": "Trickster Tools",
+      "description": "Snappaw carries small, clever gadgets like smoke pellets, noise-makers, or sticky bombs that can disorient enemies or aid in their escape."
+    }
+  ],
+  "personality": "Snappaw is playful and full of energy, always darting about with an infectious sense of enthusiasm. Their natural curiosity sometimes gets them into trouble, but their resourcefulness ensures they always find a way out. They love to explore and often bring back small trinkets or bits of useful information for their team. They have a mischievous streak, often using their stealth abilities to surprise friends with playful pranks. However, when the situation grows serious, Snappaw’s focus and loyalty are unwavering. They love to encourage their teammates with cheerful chirps and reassuring gestures.",
+  "favouritePhrases": [
+    "Catch me if you can!",
+    "Look before you leap—or just glide like me!",
+    "Tiny? Sure. But I see the big picture."
+  ],
+  "background": "Snappaw hails from a secluded forest canopy where their kind glides freely among the treetops. As the smallest of their kin, Snappaw always felt the need to prove themselves. They trained relentlessly, mastering the art of stealth, agility, and observation, eventually earning the title of 'Sky Scout.' When their home came under threat, Snappaw ventured beyond the forest to seek allies and protect their family. Along the way, they discovered a talent for teamwork and an unyielding determination to safeguard the natural world. Now, Snappaw works tirelessly as both a scout and a hero, blending their natural abilities with clever strategies to stay one step ahead of danger.",
+  "mantra": "Fly fast, think sharp, and never let the shadows catch you.",
+  "outro": "Snappaw is a tiny but mighty presence, darting through the battlefield with unmatched agility and wit. They’re always watching, always learning, and always ready to turn the tides in their team's favour.",
+  "images": [
+    {
+      "url": "",
+      "caption": "Snappaw gliding gracefully through the air, their glowing wings leaving a trail of light behind them."
+    },
+    {
+      "url": "",
+      "caption": "With a sudden burst of speed, Snappaw slashes through an obstacle with their sharp claws."
+    },
+    {
+      "url": "",
+      "caption": "Snappaw vanishes into the shadows, blending perfectly with their surroundings to avoid detection."
+    },
+    {
+      "url": "",
+      "caption": "Snappaw uses their keen senses to spot a hidden enemy, giving their team the upper hand."
+    },
+    {
+      "url": "",
+      "caption": "Snappaw pulls out a smoke pellet from their bandolier, preparing to disorient enemies and aid their escape."
+    }
+  ]
 }
 ];
