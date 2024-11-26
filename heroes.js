@@ -87,10 +87,10 @@ const heroes = [
         },
         {
           "url": "https://cdn.midjourney.com/d1b9f1e0-f903-4a8f-b624-96cddb3c17a5/0_0.png",
-          "caption": "The chase... Beanie Balls ricochets from harmlessly pillar to pillar as they pursue a bandit."
+          "caption": "The chase... Beanie Balls ricochets harmlessly from pillar to pillar as they pursue a bandit."
         },
         {
-          "url": "https://cdn.midjourney.com/cd2ef805-4df1-426f-bd32-33c1c77b4cdc/0_3.png",
+          "url": "https://cdn.midjourney.com/442036a7-3e89-4a7f-9a81-e4d3a15843a5/0_3.png",
           "caption": "Cafe's aren't made for Beanie Balls"
         },
         {
