@@ -99,27 +99,80 @@ const heroes = [
       {
         "url": "https://cdn.midjourney.com/54eb53af-4401-4203-9cd8-9b378af22c06/0_3.png",
         "caption": "Beanie Balls Battles Beastly Bots"
-      },
-      {
-        "url": "",
-        "caption": ""
-      },
-      {
-        "url": "",
-        "caption": ""
-      },
-      {
-        "url": "",
-        "caption": ""
-      },
-      {
-        "url": "",
-        "caption": ""
-      },
-      {
-        "url": "",
-        "caption": ""
       }
     ]
-  }
+  },
+  {
+  "id": "59d05f36-0fcb-4a89-bd34-7d7ff7d4bc45",
+  "name": "Meerkatster",
+  "intro": "Meerkatster is a vigilant and quick-thinking hero, always ready to detect danger and outmanoeuvre enemies. Their sharp instincts and clever gadgets make them a vital support for any team.",
+  "appearance": {
+    "description": "Meerkatster is a small, meerkat-like character standing upright with an alert and watchful posture. Their tawny fur is sleek and striped along their back, blending perfectly with sandy or earthy surroundings. They have large, expressive eyes that shine with intelligence, constantly scanning their environment for threats or opportunities. Their scout-like outfit includes a snug, sleeveless jacket and sturdy utility pants. A wide leather belt slung around their waist is packed with tiny gadgets, tools, and pouches for carrying supplies. Small goggles often rest atop their head, ready to slide down over their eyes to aid in harsh conditions like dust storms or bright flashes. Meerkatster’s claws, while sharp, are perfectly adapted for both climbing and crafting. Their tail, long and nimble, helps with balance as they dart around or perch on higher ground."
+  },
+  "abilities": [
+    {
+      "name": "Sentry’s Gaze",
+      "description": "Meerkatster’s sharp eyesight allows them to spot hidden enemies, distant movement, or incoming threats long before anyone else, providing early warnings to their team."
+    },
+    {
+      "name": "Burrow Blitz",
+      "description": "With incredible speed, Meerkatster can dig temporary trenches or tunnels to create cover, trap enemies, or create a sneaky escape route."
+    },
+    {
+      "name": "Quick Pounce",
+      "description": "Their small size and agility allow them to leap and dodge with precision, quickly closing gaps or evading enemy attacks."
+    },
+    {
+      "name": "Gadget Belt",
+      "description": "Meerkatster carries an assortment of gadgets, including smoke bombs for cover, small flashbangs to disorient foes, and grappling hooks to scale walls or cross gaps."
+    },
+    {
+      "name": "Vigilant Call",
+      "description": "By emitting a sharp, high-pitched alarm sound, Meerkatster can alert allies to immediate danger, increasing their reaction speed and awareness."
+    }
+  ],
+  "personality": "Meerkatster is ever-alert and always ready to act, with a personality that balances caution and curiosity. While their constant vigilance can make them seem a bit on edge, they care deeply for their team and take their role as a lookout very seriously. They’re the first to notice when something’s amiss and the first to offer a clever solution. They have a dry sense of humour and often joke about their small stature, turning it into a point of pride. Despite their small size, Meerkatster is incredibly brave and quick to leap into action when their friends are in danger.",
+  "favouritePhrases": [
+    "You might miss it, but I never do.",
+    "Big eyes see big trouble.",
+    "I’ll dig us out of this mess—literally."
+  ],
+  "background": "Hailing from a bustling colony nestled in an arid desert, Meerkatster grew up surrounded by their kind, where teamwork and vigilance were essential for survival. As one of the colony’s best sentinels, they were trained to spot danger, create escape routes, and protect their community from predators and harsh conditions. When a wandering adventurer stumbled upon their colony, Meerkatster was inspired by tales of the outside world and decided to leave the safety of their home to explore and help others. Now, they use their skills to watch over their newfound teammates, determined to keep them safe and ensure no threat goes unnoticed.",
+  "mantra": "Eyes sharp, feet quick, and always be one step ahead.",
+  "outro": "Meerkatster is a loyal and resourceful ally whose keen senses and clever gadgets make them a valuable part of any team. Whether they’re scouting the terrain, outsmarting enemies, or guiding their friends to safety, Meerkatster’s vigilance ensures no danger catches them—or their team—off guard.",
+  "images": [
+    {
+          "url": "https://cdn.midjourney.com/f846b814-45ee-4bbf-aa89-4e75676b15af/0_0.png",
+          "caption": "Gadgets are a way of life"
+        },
+        {
+          "url": "https://cdn.midjourney.com/d4fcb0bf-5a9f-46fa-8e73-5d9e422f2e3d/0_3.png",
+          "caption": "Meerkatster on high alert. Surveying the battlefield."
+        },
+        {
+          "url": "https://cdn.midjourney.com/1b436cc4-d766-459a-a08c-e66e78d43194/0_1.png",
+          "caption": "A snack interrupted. Git away. It's my sandwich."
+        },
+        {
+          "url": "https://cdn.midjourney.com/67533bce-0809-49b8-847b-9582c0ce9411/0_3.png",
+          "caption": "Stealth in the city. Check my beautiful disguise."
+        },
+        {
+          "url": "https://cdn.midjourney.com/68bee1da-7fe0-4bd1-983b-09326d3a5de7/0_1.png",
+          "caption": "Jungle acrobatics. Leaping from teee to tree is one of my favourite things.""
+        },
+        {
+          "url": "https://cdn.midjourney.com/d4f5f6f8-1038-4e5d-bf93-30447170ed1e/0_2.png",
+          "caption": "Hangin' with ma homies."
+        },
+        {
+          "url": "https://cdn.midjourney.com/e1329963-6cb1-41e9-a29a-d9bae43832ee/0_1.png",
+          "caption": "Rooftop stakeout. The moon is my friend."
+        },
+        {
+          "url": "https://cdn.midjourney.com/d6f0ccfe-151f-431c-b6ef-9f2b977ce57b/0_2.png",
+          "caption": "A moment for morning meditation."
+        }
+  ]
+}
 ];
