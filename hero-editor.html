@@ -9,11 +9,15 @@
 <body>
   <div class="container">
     <h1>Heroes Viewer</h1>
-    <select id="heroSelect"></select>
+    <div class="select-wrapper">
+      <select id="heroSelect"></select>
+    </div>    
     <div id="viewMode" class="hero-details"></div>
-    <button id="editButton">Edit</button>
-    <button id="downloadButton">Download JSON</button>
-    <button id="copyButton">Copy to Clipboard</button>
+    <div class="controls">
+      <button id="editButton" onclick="toggleEditMode()">Edit</button>
+      <button id="copyButton" onclick="copyToClipboard()">Copy JSON</button>
+      <button id="downloadButton" onclick="downloadJSON()">Download JSON</button>
+    </div>  
   </div>
 
   <!-- Link to external JavaScript files -->

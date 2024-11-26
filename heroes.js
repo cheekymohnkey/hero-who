@@ -1,3 +1,45 @@
+/* Images Array
+        {
+          "url": "",
+          "caption": ""
+        },
+        {
+          "url": "",
+          "caption": ""
+        },
+        {
+          "url": "",
+          "caption": ""
+        },
+        {
+          "url": "",
+          "caption": ""
+        },
+        {
+          "url": "",
+          "caption": ""
+        },
+        {
+          "url": "",
+          "caption": ""
+        },
+        {
+          "url": "",
+          "caption": ""
+        },
+        {
+          "url": "",
+          "caption": ""
+        },
+        {
+          "url": "",
+          "caption": ""
+        },
+        {
+          "url": "",
+          "caption": ""
+        }
+*/ 
 const heroes = [
     {
       "id": "8b2e4d68-6d3a-489c-b52c-2279e2c8a21e",
@@ -40,12 +82,44 @@ const heroes = [
       "outro": "Beanie Balls proves that even the fluffiest heroes can make the biggest impact, one joyful leap at a time.",
       "images": [
         {
-          "url": "https://cdn.midjourney.com/48e2de87-8366-4fca-a968-9f46bbdee78f/0_3.png",
-          "caption": "Beanie Balls vs the Giant Icecream Cone"
+          "url": "https://cdn.midjourney.com/fa9aae15-9406-49aa-b7a8-8c1b2b00b442/0_2.png",
+          "caption": "Beanie Balls’ Bouncy Entrance"
         },
         {
-          "url": "https://cdn.midjourney.com/fc2d0305-6c9a-4de4-8c67-f8af97cf2280/0_1.png",
-          "caption": "The looming threat!"
+          "url": "https://cdn.midjourney.com/d1b9f1e0-f903-4a8f-b624-96cddb3c17a5/0_0.png",
+          "caption": "The chase... Beanie Balls ricochets from harmlessly pillar to pillar as they pursue a bandit."
+        },
+        {
+          "url": "https://cdn.midjourney.com/cd2ef805-4df1-426f-bd32-33c1c77b4cdc/0_3.png",
+          "caption": "Cafe's aren't made for Beanie Balls"
+        },
+        {
+          "url": "",
+          "caption": ""
+        },
+        {
+          "url": "",
+          "caption": ""
+        },
+        {
+          "url": "",
+          "caption": ""
+        },
+        {
+          "url": "",
+          "caption": ""
+        },
+        {
+          "url": "",
+          "caption": ""
+        },
+        {
+          "url": "",
+          "caption": ""
+        },
+        {
+          "url": "",
+          "caption": ""
         }
       ]
     }

@@ -1,7 +1,7 @@
 /* General Styles */
 body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
+  font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+  line-height: 1.5rem;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -11,6 +11,10 @@ body {
   background-color: #f4f4f9;
   color: #333;
   padding: 20px;
+}
+
+.hero-details p{
+  text-align: justify;
 }
 
 .container {
@@ -54,8 +58,9 @@ body {
 }
 
 .hero-field strong {
+  font-family: Didot, 'Bodoni MT', 'Noto Serif Display', 'URW Palladio L', P052, Sylfaen, serif;
   display: block;
-  font-size: 1rem;
+  font-size: 1.25rem;
   margin-bottom: 5px;
   color: #555;
 }
@@ -138,6 +143,83 @@ body {
   }
 
   .hero-details {
-    text-align: center;
+    text-align: justify;
   }
+}
+
+/* General styling for the select list */
+#heroSelect {
+  width: 100%; /* Full-width dropdown */
+  max-width: 400px; /* Limit the maximum width */
+  margin: 10px 0; /* Add some spacing above and below */
+  padding: 10px; /* Add some padding for better usability */
+  font-size: 16px; /* Larger, more readable font */
+  color: #333; /* Neutral text color */
+  background-color: #f8f9fa; /* Light background color */
+  border: 2px solid #007bff; /* Match your button colors */
+  border-radius: 8px; /* Rounded corners for a modern look */
+  appearance: none; /* Removes the default browser styling */
+  -webkit-appearance: none; /* Safari-specific appearance reset */
+  -moz-appearance: none; /* Firefox-specific appearance reset */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+/* Add a hover effect for better interactivity */
+#heroSelect:hover {
+  border-color: #0056b3; /* Darker blue on hover */
+  background-color: #eef5ff; /* Slightly lighter background */
+}
+
+/* Add focus effect for accessibility */
+#heroSelect:focus {
+  outline: none; /* Remove default focus outline */
+  border-color: #ff6347; /* Tomato color for focus */
+  box-shadow: 0 0 5px #ff6347; /* Glow effect */
+}
+
+/* Add a small arrow indicator for dropdown (optional) */
+#heroSelect::after {
+  content: '\25bc'; /* Unicode for downward arrow */
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Wrapper div to position the arrow indicator properly */
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 400px;
+}
+
+.select-wrapper #heroSelect {
+  padding-right: 30px; /* Space for the arrow */
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.controls button {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.controls button:hover {
+  background-color: #0056b3;
+}
+
+.hidden {
+  display: none;
 }
