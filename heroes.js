@@ -174,5 +174,86 @@ const heroes = [
           "caption": "A moment for morning meditation."
         }
   ]
+},
+{
+  "id": "7a4c6d2d-3e44-4899-85fb-9ac4b6e2f1de",
+  "name": "Prism Knight",
+  "intro": "Prism Knight is a dazzling, otherworldly hero whose mastery of light and crystal makes them a radiant protector of Earth. Their geometric brilliance and unwavering resolve inspire awe and hope wherever they go.",
+  "appearance": {
+    "description": "Prism Knight’s body is a living sculpture of angular, crystalline facets that shimmer with iridescent hues, constantly shifting with the light. Their form is humanoid, with sharp, elegant contours resembling a knight’s armor forged from pure gemstone. Their head has no visible eyes or mouth but features a polished, diamond-like surface that refracts light into a subtle, rainbow-colored halo. Their limbs are sleek and angular, and their hands can reshape into sharp edges or rounded constructs depending on need. Prism Knight radiates an aura of refracted light that surrounds them like a living prism, casting geometric patterns of color onto nearby surfaces. Their 'cape' is a flowing sheet of semi-transparent crystal shards that ripple and shift like liquid glass as they move."
+  },
+  "abilities": [
+    {
+      "name": "Light Refractor",
+      "description": "Prism Knight can bend and split light into concentrated energy beams. These beams can be used to:\n• Attack: Fire powerful blasts of heat or force.\n• Illuminate: Create dazzling light to blind enemies or light up dark areas.\n• Disorient: Project confusing illusions with scattered light patterns."
+    },
+    {
+      "name": "Crystal Constructs",
+      "description": "Prism Knight can generate crystalline structures, forming barriers, weapons, or platforms. These constructs are nearly indestructible and can be reshaped as needed."
+    },
+    {
+      "name": "Prismatic Shield",
+      "description": "By expanding their aura, Prism Knight can create a dome of refracted light and crystal to protect allies from harm, deflecting attacks in a cascade of colors."
+    },
+    {
+      "name": "Solar Absorption",
+      "description": "Prism Knight draws power from sunlight, becoming stronger and more radiant during the day or in well-lit environments. When fully charged, they can unleash devastating bursts of concentrated energy."
+    },
+    {
+      "name": "Harmonic Resonance",
+      "description": "They can vibrate their crystalline body to produce resonant tones, disrupting enemy technology, calming allies, or destabilizing fragile structures."
+    }
+  ],
+  "personality": "Prism Knight is contemplative and serene, radiating wisdom and calm. They rarely speak, but when they do, their voice is a melodic hum that echoes with a crystalline timbre. Though they are a being of immense power, they act with humility and reverence for life. Having learned about humanity by refracting their light and observing from a distance, Prism Knight has a unique perspective on emotions, valuing the spectrum of feelings much like the spectrum of light. They believe in balance and harmony, often seeking peaceful resolutions before resorting to combat.",
+  "favouritePhrases": [
+    "All light begins as one before it becomes many.",
+    "Even the sharpest edge can reflect kindness.",
+    "Where there is shadow, there is always light to guide the way."
+  ],
+  "background": "Prism Knight was formed deep within a hidden cave, where a massive crystal absorbed solar energy over millennia. This ancient crystal eventually gained consciousness and began to explore the world through the refracted light of its facets, piecing together knowledge of humanity and its struggles. Drawn by the desire to protect this vibrant, complex world, Prism Knight reshaped themselves into a humanoid form and emerged to defend Earth against threats that would extinguish its brilliance. Though they are deeply connected to the earth’s core and its solar lifeline, they still feel like an outsider among humans. Nonetheless, their commitment to safeguarding life drives their every action. They see themselves as a bridge between the natural and the extraordinary, seeking to inspire unity and wonder.",
+  "mantra": "Light is infinite, and so too is the resolve to protect what matters most.",
+  "outro": "Prism Knight is a radiant sentinel of light and crystal, wielding their refractive powers with precision and grace. Their presence is both a beacon of hope and a reminder of the beauty found in unity and diversity.",
+  "images": [
+        {
+          "url": "https://cdn.midjourney.com/f44424d8-0036-4c51-b255-3f9cdc6c41a0/0_2.png",
+          "caption": "A radiant assault. Creatures of the dark cower from Prism Knights radiance."
+        },
+        {
+          "url": "https://cdn.midjourney.com/a32f8971-23cb-42ca-a801-b821375b83b9/0_1.png",
+          "caption": "A moments peace."
+        },
+        {
+          "url": "https://cdn.midjourney.com/4b127334-44f0-4ac6-a2ce-e26e8d698e9b/0_1.png",
+          "caption": "Even timeless beings need to visit rhe market."
+        },
+        {
+          "url": "https://cdn.midjourney.com/bb62aa15-951e-4585-b7ba-6195dce2d9ff/0_2.png",
+          "caption": "Battle in the crystal fields."
+        },
+        {
+          "url": "https://cdn.midjourney.com/eea4dbcb-e164-474a-919c-0ecf0dc886f0/0_3.png",
+          "caption": "Crystal training dojo."
+        },
+        {
+          "url": "https://cdn.midjourney.com/2cd58ae1-ae17-4d3f-95cb-96e951d785e1/0_0.png".
+          "caption": "Everywhere I go I stand out."
+        },
+        {
+          "url": "https://cdn.midjourney.com/79a60028-3f15-4bc6-8d87-a2779fb70505/0_3.png",
+          "caption": "Cosmic meditation."
+        },
+        {
+          "url": "https://cdn.midjourney.com/aa767cbf-e1d8-4344-b27c-6a78975d6a2e/0_2.png",
+          "caption": "A bon fire celebration."
+        },
+        {
+          "url": "https://cdn.midjourney.com/1b9313da-e432-4d96-92bc-4382e2833a6a/0_0.png",
+          "caption": "Battle in a mirror maze."
+        },
+        {
+          "url": "https://cdn.midjourney.com/2c19ff33-26ac-42ff-8c07-10608219b3e0/0_2.png",
+          "caption": "Rescue on the rainbow bridge."
+        }
+  ]
 }
 ];
