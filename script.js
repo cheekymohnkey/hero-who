@@ -421,3 +421,13 @@ downloadLink.click();
 // Initialize
 renderHeroOptions();
 renderHeroView(heroes[0]);
+
+const params = new Proxy(new URLSearchParams(window.location.search), {
+  get: (searchParams, prop) => searchParams.get(prop),
+});
+// Get the value of "some_key" in eg "https://example.com/?some_key=some_value"
+let isAdmin = params.admin;
+if(isAdmin == "true"){
+  var adminDiv = document.getElementById('admincontrols');
+  adminDiv.style = "";
+}
