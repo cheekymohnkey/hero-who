@@ -1,5 +1,4 @@
-const heroes = [
-  {
+  const heroes = [{
     "id": "8b2e4d68-6d3a-489c-b52c-2279e2c8a21e",
     "name": "Beanie Balls",
     "intro": "Beanie Balls is the embodiment of playful resilience and indomitable optimism, proving that size doesn’t determine strength. With a charm that disarms enemies and bounces that pack a punch, Beanie Balls is a hero who defies expectations.",
@@ -287,4 +286,4 @@ const heroes = [
       }
     ]
   }
-];
+]

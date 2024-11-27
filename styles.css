@@ -200,6 +200,7 @@ body {
   display: inline-block;
   width: 100%;
   max-width: 400px;
+  margin-bottom: 1rem;
 }
 
 .select-wrapper #heroSelect {
@@ -235,7 +236,7 @@ body {
   margin-bottom: 20px;
 }
 
-.edit-section label {
+.edit-section label, .select-wrapper label {
   font-weight: bold;
   display: block;
   margin-bottom: 5px;

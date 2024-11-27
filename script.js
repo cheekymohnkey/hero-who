@@ -10,33 +10,13 @@ function renderHeroOptions() {
   });
 }
 
-function setupCarouselKeyboardNavigation(carousel) {
-  const images = carousel.querySelectorAll("img");
-  carousel.addEventListener("mouseover", () => {
-    document.addEventListener("keydown", handleCarouselKeys);
-  });
-  carousel.addEventListener("mouseout", () => {
-    document.removeEventListener("keydown", handleCarouselKeys);
-  });
 
-  function handleCarouselKeys(event) {
-    if (event.key === "ArrowRight") {
-      currentImageIndex = (currentImageIndex + 1) % images.length;
-      updateCarousel();
-    } else if (event.key === "ArrowLeft") {
-      currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-      updateCarousel();
-    }
-  }
-}
-let currentImageIndex = 0;
 function renderCarousel(images) {
   if (!images || images.length === 0) return "";
-
+  let currentImageIndex = 0;
 
   const carouselContainer = document.createElement("div");
   carouselContainer.classList.add("carousel");
-  setupCarouselKeyboardNavigation(carouselContainer);
   const imageElement = document.createElement("img");
   imageElement.src = images[currentImageIndex].url;
   imageElement.alt = images[currentImageIndex].caption;
@@ -339,6 +319,55 @@ function toggleEditMode(isEditing) {
     editButton.style.display = 'block';
   }
 }
+// Function to add a new hero from JSON input
+function addNewHero() {
+  const newHeroJsonInput = document.getElementById('newHeroJson').value;
+  const errorElement = document.getElementById('newHeroError');
+  errorElement.style.display = 'none'; // Reset error message
+
+  try {
+    // Parse the JSON input
+    const newHero = JSON.parse(newHeroJsonInput);
+
+    // Validate required fields
+    if (!newHero.id || !newHero.name || !newHero.appearance || !newHero.abilities || !newHero.images) {
+      throw new Error("Missing required fields: 'id', 'name', 'appearance', 'abilities', or 'images'.");
+    }
+
+    // Add the new hero to the heroes collection
+    heroes.push(newHero);
+
+    // Refresh the hero dropdown
+    refreshHeroDropdown();
+
+    // Clear the input field
+    document.getElementById('newHeroJson').value = '';
+
+    // Set the newly added hero as selected
+    heroSelect.value = heroes.length - 1;
+    renderHeroView(newHero);
+
+    alert('New hero added successfully!');
+  } catch (error) {
+    // Display error message
+    errorElement.textContent = `Error: ${error.message}`;
+    errorElement.style.display = 'block';
+  }
+}
+
+// Function to refresh the hero dropdown after adding a new hero
+function refreshHeroDropdown() {
+  heroSelect.innerHTML = ''; // Clear existing options
+  heroes.forEach((hero, index) => {
+    const option = document.createElement('option');
+    option.value = index;
+    option.textContent = hero.name;
+    heroSelect.appendChild(option);
+  });
+}
+
+// Attach the addNewHero function to the button
+document.getElementById('addNewHeroButton').addEventListener('click', addNewHero);
 
 // Attach save and edit button functionality
 document.getElementById('saveButton').addEventListener('click', saveChanges);
@@ -350,6 +379,35 @@ navigator.clipboard.writeText(JSON.stringify(heroes, null, 2))
   .then(() => alert('Heroes JSON copied to clipboard!'))
   .catch(err => alert('Failed to copy JSON: ' + err));
 }
+
+async function saveHeroesToAWS() {
+  const awsButton = document.getElementById('awsButton');
+  awsButton.disabled = true; // Prevent multiple clicks
+
+  try {
+    const response = await fetch('https://25gpvyquj2.execute-api.ap-southeast-2.amazonaws.com/prod/save-heroes', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(heroes),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Server responded with ${response.status}`);
+    }
+
+    const result = await response.json();
+    alert(result.message);
+  } catch (error) {
+    console.error('Error saving heroes:', error);
+    alert('Failed to save heroes. Please try again.');
+  } finally {
+    awsButton.disabled = false;
+  }
+}
+
+// Attach the saveHeroes function to the "Save" button
+document.getElementById('awsButton').addEventListener('click', saveHeroesToAWS);
+
 
 // Download JSON
 function downloadJSON() {

@@ -10,16 +10,26 @@
   <div class="container">
     <h1>Heroes Viewer</h1>
     <div class="select-wrapper">
+      <label for="heroSelect">Choose a hero...</label>
       <select id="heroSelect"></select>
     </div>    
     <div id="viewMode" class="hero-details"></div>
     <div id="editMode" class="hidden hero-details"></div>
     <div class="controls">
       <button id="editButton">Edit</button>
-      <button id="saveButton">Save</button>
+      <button id="saveButton" class="hidden">Save</button>
       <button id="copyButton" onclick="copyToClipboard()">Copy JSON</button>
       <button id="downloadButton" onclick="downloadJSON()">Download JSON</button>
-    </div>  
+      <button id="awsButton">Save Heroes to AWS</button>
+    </div>
+    <div id="newHeroSection" class="edit-section">
+      <h3>Create New Hero</h3>
+      <div>
+        <textarea id="newHeroJson" placeholder="Paste JSON for new hero here"></textarea>
+      </div>
+      <button id="addNewHeroButton">Add New Hero</button>
+      <p id="newHeroError" style="color: red; display: none;">Invalid JSON. Please check your input.</p>
+    </div>
   </div>
 
   <!-- Link to external JavaScript files -->
