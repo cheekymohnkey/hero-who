@@ -53,8 +53,21 @@ body {
   margin: 10px 0;
 }
 
+/* Hero Field Labels */
+.hero-field {
+  margin: 20px 0;
+}
+
 .class p {
   line-height: 1.25 rem;
+}
+
+.hero-field strong {
+  font-family: Didot, 'Bodoni MT', 'Noto Serif Display', 'URW Palladio L', P052, Sylfaen, serif;
+  display: block;
+  font-size: 1.25rem;
+  margin-bottom: 5px;
+  color: #555;
 }
 
 /* Carousel Styles */
@@ -222,17 +235,91 @@ body {
   /* Space for the arrow */
 }
 
-#heroContainer div.class-attribute:nth-child(odd) {
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.controls button {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.controls button:hover {
+  background-color: #0056b3;
+}
+
+.hidden {
+  display: none;
+}
+
+.edit-section {
+  margin-bottom: 20px;
+}
+
+.edit-section label,
+.select-wrapper label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.edit-section input,
+.edit-section textarea,
+.edit-section select {
+  width: 100%;
+  max-width: 600px;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.edit-section textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+#editMode #abilitiesList .ability-item{
+  background-color: #eee;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+#viewMode div.class-attribute:nth-child(odd) {
   background-color: #eeeeee;
   border-radius: 5px;
+  padding: 5px;
 }
 
-#heroContainer div.class-attribute{
-  padding: 10px;
-}
-
-#heroContainer .classattribute:nth-child(odd) h2 {
+#viewMode .classattribute:nth-child(odd) h2 {
   margin-top: 5px;
+}
+
+#editMode .edit-section:nth-child(odd) {
+  background-color: #eeeeee;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .abilities ol li:nth-child(even) {
@@ -298,4 +385,14 @@ body {
       z-index: 1;
     }
   }
+}
+
+#abilitiesList .ability-item {
+  margin-bottom: 5px;
+}
+
+#abilitiesList div:nth-child(even) {
+  background-color: #eeeeee;
+  border-radius: 5px;
+  padding: 10px;
 }

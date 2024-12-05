@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heroes Viewer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Heroes Viewer</h1>
+    <div class="select-wrapper">
+      <label for="heroSelect">Choose a hero...</label>
+      <select id="heroSelect"></select>
+    </div>
+    <div class="filter-section select-wrapper">
+      <label for="heroFilter">Filter Heroes:</label>
+      <select id="heroFilter">
+        <!-- Options to be dynamically populated-->
+      </select>
+    </div>
+    <div id="heroList"></div>
+    <div id="heroContainer" class="hero-details"></div>
+  </div>
+
+  <!-- Link to external JavaScript files -->
+  <script src="heroes.js"></script> <!-- Contains the `heroes` JSON object -->
+  <script src="hero-scripts.js"></script> <!-- Contains all interactive functionality -->
+</body>
+
+</html>

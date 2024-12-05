@@ -1,36 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Heroes Viewer</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="editor-styles.css">
 </head>
+
 <body>
   <div class="container">
     <h1>Heroes Viewer</h1>
     <div class="select-wrapper">
       <label for="heroSelect">Choose a hero...</label>
       <select id="heroSelect"></select>
-    </div>    
+    </div>
+    <div class="filter-section select-wrapper">
+      <label for="heroFilter">Filter Heroes:</label>
+      <select id="heroFilter">
+        <!-- Options to be dynamically populated-->
+      </select>
+    </div>
+    <div id="heroList"></div>
     <div id="viewMode" class="hero-details"></div>
     <div id="editMode" class="hidden hero-details"></div>
     <div id="admincontrols" style="display: none;">
-    <div class="controls">
-      <button id="editButton">Edit</button>
-      <button id="saveButton" class="hidden">Save</button>
-      <button id="copyButton" onclick="copyToClipboard()">Copy JSON</button>
-      <button id="downloadButton" onclick="downloadJSON()">Download JSON</button>
-      <button id="awsButton">Save Heroes to AWS</button>
-    </div>
-    <div id="newHeroSection" class="edit-section">
-      <h3>Create New Hero</h3>
-      <div>
-        <textarea id="newHeroJson" placeholder="Paste JSON for new hero here"></textarea>
+      <div class="controls">
+        <button id="editButton">Edit</button>
+        <button id="saveButton" class="hidden">Save</button>
+        <button id="copyButton" onclick="copyToClipboard()">Copy All Heroes JSON</button>
+        <button id="copyHeroButton" onclick="copyHeroToClipboard()">Copy Hero JSON</button>
+        <button id="downloadButton" onclick="downloadJSON()">Download JSON</button>
+        <button id="awsButton">Save Heroes to AWS</button>
       </div>
-      <button id="addNewHeroButton">Add New Hero</button>
-      <p id="newHeroError" style="color: red; display: none;">Invalid JSON. Please check your input.</p>
-    </div>
+      <div id="newHeroSection" class="edit-section">
+        <h3>Create New Hero</h3>
+        <div>
+          <textarea id="newHeroJson" placeholder="Paste JSON for new hero here"></textarea>
+        </div>
+        <button id="addNewHeroButton">Add New Hero</button>
+        <p id="newHeroError" style="color: red; display: none;">Invalid JSON. Please check your input.</p>
+      </div>
+      <div id="hero-list">
+        <h3>Heroes</h3>
+        <ul id="heroes-container"></ul>
+      </div>
     </div>
   </div>
 
@@ -38,4 +52,5 @@
   <script src="heroes.js"></script> <!-- Contains the `heroes` JSON object -->
   <script src="script.js"></script> <!-- Contains all interactive functionality -->
 </body>
+
 </html>

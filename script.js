@@ -1,13 +1,48 @@
 const heroSelect = document.getElementById("heroSelect");
 const viewMode = document.getElementById("viewMode");
+const baseUrl = "https://hero-editor.s3.ap-southeast-2.amazonaws.com/";
+heroes.sort(function (a, b) {
+  a = a.name.toLowerCase();
+  b = b.name.toLowerCase();
 
-function renderHeroOptions() {
-  heroes.forEach((hero, index) => {
+  return a < b ? -1 : a > b ? 1 : 0;
+});
+
+function renderHeroOptions(herolist) {
+  heroSelect.length = 0;
+  herolist.forEach((hero, index) => {
     const option = document.createElement("option");
-    option.value = index;
+    option.value = hero.id;
     option.textContent = hero.name;
     heroSelect.appendChild(option);
   });
+  renderHeroView(herolist[0]);
+  renderEditMode(herolist[0]);
+}
+
+// Function to populate the dropdown with unique primary classes
+function populateFilterOptions() {
+  const heroFilter = document.getElementById('heroFilter');
+
+  // Extract unique primary classes from the hero collection
+  const uniqueClasses = ['all', ...new Set(heroes.map(hero => hero.primaryClass))];
+
+  // Populate the dropdown with the unique classes
+  heroFilter.innerHTML = uniqueClasses.map(primaryClass => `
+    <option value="${primaryClass}">${primaryClass === 'all' ? 'All Classes' : primaryClass}</option>
+  `).join('');
+  
+}
+
+function filterHeroes() {
+  const selectedClass = document.getElementById('heroFilter').value;
+
+  if (selectedClass === 'all') {
+    renderHeroOptions(heroes); // Show all heroes
+  } else {
+    const filteredHeroes = heroes.filter(hero => hero.primaryClass === selectedClass);
+    renderHeroOptions(filteredHeroes);
+  }
 }
 
 
@@ -18,16 +53,11 @@ function renderCarousel(images) {
   const carouselContainer = document.createElement("div");
   carouselContainer.classList.add("carousel");
   const imageElement = document.createElement("img");
-  imageElement.src = images[currentImageIndex].url;
+  imageElement.src = baseUrl + images[currentImageIndex].url;
   imageElement.alt = images[currentImageIndex].caption;
   imageElement.addEventListener("click", () => {
     window.open(images[currentImageIndex].url, "_blank");
   });
-
-  const caption = document.createElement("div");
-  caption.classList.add("caption");
-  caption.textContent = images[currentImageIndex].caption;
-
   const controls = document.createElement("div");
   controls.classList.add("carousel-controls");
 
@@ -51,8 +81,8 @@ function renderCarousel(images) {
   controls.appendChild(nextButton);
 
   carouselContainer.appendChild(imageElement);
-  carouselContainer.appendChild(caption);
   carouselContainer.appendChild(controls);
+
   document.addEventListener('keydown', (event) => {
     if (event.key === 'ArrowRight') {
       currentImageIndex = (currentImageIndex + 1) % images.length;
@@ -61,14 +91,19 @@ function renderCarousel(images) {
       currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
       updateCarousel();
     }
-});
+  });
 
-function updateCarousel() {
-  imageElement.src = images[currentImageIndex].url;
-  imageElement.alt = images[currentImageIndex].caption;
-  caption.textContent = images[currentImageIndex].caption;
-}
-  
+  function updateCarousel() {
+    imageElement.src = baseUrl + images[currentImageIndex].url;
+    imageElement.alt = images[currentImageIndex].caption;
+    const caption = document.getElementsByClassName("caption")[0];
+    caption.innerHTML = `<div class="quote">
+  <blockquote>
+    <p>${wrapQuotes(images[currentImageIndex].caption)}</p>
+  </blockquote>
+</div>`;
+  }
+
   return carouselContainer;
 }
 
@@ -80,48 +115,70 @@ function renderHeroView(hero) {
       <h1>${hero.name}</h1>
       <p>${hero.intro}</p>
       <img src="hero-images/${hero.id}.png" class="hero-image" />
-      <div class="appearance">
+      <div class="class class-attribute">
+        <h2>Class</h2>
+        <p>
+          <strong>Class Name:</strong> ${hero.uniqueClassName}<br />
+          <strong>Main Specialty:</strong> ${hero.primaryClass}<br />
+          <strong class="specialty">Secondary Specialty:</strong> ${hero.secondaryClass}
+        </p>
+      </div>
+      <div class="appearance class-attribute">
         <h2>Appearance</h2>
         <p>${hero.appearance.description}</p>
       </div>
-      <div class="abilities">
+      <div class="basicAttack class-attribute">
+        <h2>Basic Attack</h2>
+        <p>${hero.basicAttack}</p>
+      </div>
+      <div class="abilities class-attribute">
         <h2>Abilities</h2>
-        <ul>
+        <ol>
           ${hero.abilities.map(ability => `
             <li>
-              <strong>${ability.name}:</strong> ${ability.description}
+              <p><strong>${ability.name}</strong></p>
+              <p>${ability.description}</p>
+              <p>An <strong>${ability.type}</strong> ability from the <strong>${ability.class}</strong> specialty.</p>
             </li>
           `).join('')}
-        </ul>
+        </ol>
       </div>
-      <div class="personality">
+      <div class="personality class-attribute">
         <h2>Personality</h2>
         <p>${hero.personality}</p>
       </div>
-      <div class="favourite-phrases">
+      <div class="favourite-phrases class-attribute">
         <h2>Favourite Phrases</h2>
         <ul>
           ${hero.favouritePhrases.map(phrase => `<li>${phrase}</li>`).join('')}
         </ul>
       </div>
-      <div class="background">
+      <div class="background class-attribute">
         <h2>Background</h2>
         <p>${hero.background}</p>
       </div>
-      <div class="mantra">
+      <div class="mantra class-attribute">
         <h2>Mantra</h2>
         <p>${hero.mantra}</p>
       </div>
-      <div class="outro">
+      <div class="outro class-attribute">
         <h2>Outro</h2>
         <p>${hero.outro}</p>
       </div>
-      
     </div>
   `;
   const carousel = renderCarousel(hero.images);
   if (carousel) {
     viewMode.appendChild(carousel);
+
+    const caption = document.createElement("div");
+    caption.classList.add("caption");
+    caption.innerHTML = `<div class="quote">
+    <blockquote>
+      <p>${wrapQuotes(hero.images[0].caption)}</p>
+    </blockquote>
+    </div>`;
+    viewMode.appendChild(caption);
   }
 }
 
@@ -138,16 +195,41 @@ function renderEditMode(hero) {
       <textarea id="editIntro">${hero.intro}</textarea>
     </div>
     <div class="edit-section">
+      <label for="editUniqueClassName">Unique Class:</label>
+      <input type="text" id="editUniqueClassName" value="${hero.uniqueClassName}" />
+    </div>
+    <div class="edit-section">
+      <label for="editPrimaryClass">Primary Class:</label>
+      <input type="text" id="editPrimaryClass" value="${hero.primaryClass}" />
+    </div>
+    <div class="edit-section">
+      <label for="editSecondaryClass">Secondary Class:</label>
+      <input type="text" id="editSecondaryClass" value="${hero.secondaryClass}" />
+    </div>
+    <div class="edit-section">
       <label for="editAppearance">Appearance:</label>
       <textarea id="editAppearance">${hero.appearance.description}</textarea>
+    </div>
+    <div class="edit-section">
+      <label for="editBasicAttack">Basic Attack:</label>
+      <textarea id="editBasicAttack">${hero.basicAttack}</textarea>
     </div>
     <div class="edit-section">
       <label for="editAbilities">Abilities:</label>
       <div id="abilitiesList">
         ${hero.abilities.map((ability, index) => `
-          <div class="ability-item">
+          <div class="ability-item" data-index="${index}">
             <input type="text" class="ability-name" data-index="${index}" value="${ability.name}" placeholder="Ability Name" />
+            <select data-index="${index}" class="ability-type">
+              <option value="Active" ${ability.type === 'Active' ? 'selected' : ''}>Active</option>
+              <option value="Active (Once Per Adventure)" ${ability.type === 'Active (Once Per Adventure)' ? 'selected' : ''}>Active (Once Per Adventure)</option>
+              <option value="Passive" ${ability.type === 'Passive' ? 'selected' : ''}>Passive</option>
+              </select>
+            <input type="text" data-index="${index}" class="ability-class" value="${ability.class}" placeholder="Class" />
             <textarea class="ability-description" data-index="${index}" placeholder="Ability Description">${ability.description}</textarea>
+            <br />
+            <button class="move-up">Move Up</button>
+            <button class="move-down">Move Down</button>
             <button class="remove-ability" data-index="${index}">Remove</button>
           </div>
         `).join('')}
@@ -167,58 +249,181 @@ function renderEditMode(hero) {
       <button id="addPhraseButton">Add Phrase</button>
     </div>
     <div class="edit-section">
+      <label for="editBackground">Background:</label>
+      <textarea id="editBackground">${hero.background}</textarea>
+    </div>
+    <div class="edit-section">
+      <label for="editMantra">Mantra:</label>
+      <textarea type="text" id="editMantra">${hero.mantra}"</textarea>
+    </div>
+    <div class="edit-section">
+      <label for="editOutro">Outro:</label>
+      <textarea id="editOutro">${hero.outro}</textarea>
+    </div>
+    <div class="edit-section">
       <label for="editImages">Images:</label>
       <div id="imageList">
         ${hero.images.map((img, index) => `
           <div class="image-item">
             <input type="text" class="image-url" data-index="${index}" value="${img.url}" placeholder="Image URL" />
-            <input type="text" class="image-caption" data-index="${index}" value="${img.caption}" placeholder="Caption" />
+            <textarea class="image-caption" data-index="${index}"placeholder="Caption" />${img.caption}</textarea>
             <button class="remove-image" data-index="${index}">Remove</button>
           </div>
         `).join('')}
       </div>
-      <button id="addImageButton">Add Image</button>
+      <div style="margin-top: 5px;">
+        <button id="addImageButton">Add Image</button>
+      </div>
+    </div>
+        <div class="id">
+        <h3>ID (Read Only)</h2>
+        <p>${hero.id}</p>
     </div>
   `;
 
   // Attach event listeners
-  document.getElementById('addAbilityButton').addEventListener('click', addAbilityField);
   document.getElementById('addPhraseButton').addEventListener('click', addPhraseField);
   document.getElementById('addImageButton').addEventListener('click', addImageField);
-  document.querySelectorAll('.remove-ability').forEach(btn => btn.addEventListener('click', removeAbilityField));
+  
   document.querySelectorAll('.remove-phrase').forEach(btn => btn.addEventListener('click', removePhraseField));
   document.querySelectorAll('.remove-image').forEach(btn => btn.addEventListener('click', removeImageField));
+  attachAbilityActionListeners();
+  attachImageUploadEventListeners();
+}
+
+function attachImageUploadEventListeners() {
+  var imageInputs = document.querySelectorAll(".image-url");
+  imageInputs.forEach((input) => {
+    input.addEventListener("input", (event) => handleImageUpload(event));
+  });
+}
+
+function syncAbilitiesWithUI() {
+  hero.abilities = Array.from(document.querySelectorAll('.ability-item')).map(abilityItem => ({
+    name: abilityItem.querySelector('.ability-name').value,
+    type: abilityItem.querySelector('.ability-type').value,
+    class: abilityItem.querySelector('.ability-class').value,
+    description: abilityItem.querySelector('.ability-description').value
+  }));
+}
+
+function moveAbilityUp(event) {
+  const abilityItem = event.target.closest('.ability-item');
+  const index = parseInt(abilityItem.dataset.index);
+
+  if (index > 0) {
+    
+    syncAbilitiesWithUI();
+    // Swap abilities in the array
+    [hero.abilities[index - 1], hero.abilities[index]] =
+    [hero.abilities[index], hero.abilities[index - 1]];
+
+    // Re-render the abilities list
+    renderAbilities();
+  }
+}
+
+function moveAbilityDown(event) {
+  const abilityItem = event.target.closest('.ability-item');
+  const index = parseInt(abilityItem.dataset.index);
+
+  if (index < hero.abilities.length - 1) {
+    syncAbilitiesWithUI();
+    // Swap abilities in the array
+    [hero.abilities[index], hero.abilities[index + 1]] =
+    [hero.abilities[index + 1], hero.abilities[index]];
+
+    // Re-render the abilities list
+    renderAbilities();
+  }
+}
+
+document.getElementById('heroFilter').addEventListener('change', filterHeroes);
+
+function renderAbilities() {
+  const abilitiesList = document.getElementById('abilitiesList');
+
+  // Clear and re-render the abilities
+  abilitiesList.innerHTML = hero.abilities.map((ability, index) => `
+    <div class="ability-item" data-index="${index}">
+      <input type="text" class="ability-name" value="${ability.name}" placeholder="Ability Name" />
+      <select class="ability-type">
+        <option value="Active" ${ability.type === 'Active' ? 'selected' : ''}>Active</option>
+        <option value="Active (Once Per Adventure)" ${ability.type === 'Active (Once Per Adventure)' ? 'selected' : ''}>Active (Once Per Adventure)</option>
+        <option value="Passive" ${ability.type === 'Passive' ? 'selected' : ''}>Passive</option>
+      </select>
+      <input type="text" class="ability-class" value="${ability.class}" placeholder="Class" />
+      <textarea class="ability-description" placeholder="Ability Description">${ability.description}</textarea>
+      <br />
+      <button class="move-up">Move Up</button>
+      <button class="move-down">Move Down</button>
+      <button class="remove-ability">Remove</button>
+    </div>
+  `).join('');
+
+  // Re-attach event listeners after re-rendering
+  attachAbilityActionListeners();
 }
 
 
+async function handleImageUpload(event) {
+  const url = event.target.value;
+
+  // Validate URL format
+  const validUrlPattern = /^https:\/\/cdn\.midjourney\.com\/([a-f0-9\-]+)\/[0-9]_[0-9]\.png$/;
+  const match = url.match(validUrlPattern);
+
+  if (match) {
+    try {
+      const guid = match[1]; // Extract GUID
+      const relativePath = await uploadImageToS3(url, guid);
+
+      // Update the corresponding image object in the model
+      const imageIndex = parseInt(event.target.dataset.index, 10); // Assume index is stored in `data-index`
+      if (!isNaN(imageIndex)) {
+        //model.images[imageIndex].url = relativePath;
+
+        // Update the UI with the relative path
+        event.target.value = relativePath;
+
+        // Optionally, provide feedback
+        event.target.style = "background-color: #b8e4b6;";
+        //alert("Image uploaded successfully!");
+      }
+    } catch (error) {
+      console.error("Failed to upload image:", error);
+      alert("Failed to upload image. Please try again.");
+    }
+  }
+}
+
+const hero=heroes[0];
+
 heroSelect.addEventListener("change", (e) => {
-  const selectedHero = heroes[e.target.value];
-  renderHeroView(selectedHero);
-  renderEditMode(selectedHero);
+  const hero = heroes.find(hero => hero.id == e.target.value);
+  renderHeroView(hero);
+  renderEditMode(hero);
 });
 
 // Function to add a new ability field
 function addAbilityField() {
-  const abilitiesList = document.getElementById('abilitiesList');
-  const newAbilityIndex = abilitiesList.children.length;
-  const newAbilityItem = document.createElement('div');
-  newAbilityItem.classList.add('ability-item');
-  newAbilityItem.innerHTML = `
-    <input type="text" class="ability-name" data-index="${newAbilityIndex}" placeholder="Ability Name" />
-    <textarea class="ability-description" data-index="${newAbilityIndex}" placeholder="Ability Description"></textarea>
-    <button class="remove-ability" data-index="${newAbilityIndex}">Remove</button>
-  `;
-  abilitiesList.appendChild(newAbilityItem);
+  hero.abilities.push({
+    name: '',
+    type: 'Active',
+    class: '',
+    description: ''
+  });
 
-  // Attach event listener to remove button
-  newAbilityItem.querySelector('.remove-ability').addEventListener('click', removeAbilityField);
+  // Re-render the abilities list
+  renderAbilities();
 }
+
 
 // Function to remove an ability field
 function removeAbilityField(event) {
-  const index = event.target.getAttribute('data-index');
-  const abilityItem = document.querySelector(`.ability-item [data-index="${index}"]`).closest('.ability-item');
-  abilityItem.remove();
+  const index = parseInt(event.target.closest('.ability-item').dataset.index);
+  hero.abilities.splice(index, 1); // Remove from array
+  renderAbilities(); // Re-render the abilities list
 }
 
 // Function to add a new phrase field
@@ -252,13 +457,14 @@ function addImageField() {
   newImageItem.classList.add('image-item');
   newImageItem.innerHTML = `
     <input type="text" class="image-url" data-index="${newImageIndex}" placeholder="Image URL" />
-    <input type="text" class="image-caption" data-index="${newImageIndex}" placeholder="Caption" />
+    <textarea class="image-caption" data-index="${newImageIndex} placeholder="Caption"></textarea>
     <button class="remove-image" data-index="${newImageIndex}">Remove</button>
   `;
   imageList.appendChild(newImageItem);
 
   // Attach event listener to remove button
   newImageItem.querySelector('.remove-image').addEventListener('click', removeImageField);
+  newImageItem.addEventListener("input", (event) => handleImageUpload(event));
 }
 
 // Function to remove an image field
@@ -270,16 +476,25 @@ function removeImageField(event) {
 
 // Function to save changes back to the hero object
 function saveChanges() {
-  const hero = heroes[heroSelect.value];
+  const hero = heroes.find(hero => hero.id == heroSelect.value);
 
   // Update basic fields
   hero.name = document.getElementById('editName').value;
   hero.intro = document.getElementById('editIntro').value;
+  hero.uniqueClassName = document.getElementById('editUniqueClassName').value;
+  hero.primaryClass = document.getElementById('editPrimaryClass').value;
+  hero.secondaryClass = document.getElementById('editSecondaryClass').value;
   hero.appearance.description = document.getElementById('editAppearance').value;
+  hero.basicAttack = document.getElementById('editBasicAttack').value;
+  hero.background = document.getElementById('editBackground').value;
+  hero.mantra = document.getElementById('editMantra').value;
+  hero.outro = document.getElementById('editOutro').value;
 
   // Update abilities
   hero.abilities = Array.from(document.querySelectorAll('.ability-item')).map(abilityItem => ({
     name: abilityItem.querySelector('.ability-name').value,
+    type: abilityItem.querySelector('.ability-type').value,
+    class: abilityItem.querySelector('.ability-class').value,
     description: abilityItem.querySelector('.ability-description').value
   }));
 
@@ -295,6 +510,7 @@ function saveChanges() {
   }));
 
   // Save completed, switch back to view mode
+  saveHeroesToAWS();
   toggleEditMode(false);
 }
 
@@ -306,13 +522,13 @@ function toggleEditMode(isEditing) {
   const editButton = document.getElementById('editButton');
 
   if (isEditing) {
-    renderEditMode(heroes[heroSelect.value]);
+    renderEditMode(heroes.find(hero => hero.id == [heroSelect.value]));
     viewMode.style.display = 'none';
     editMode.style.display = 'block';
     saveButton.style.display = 'block';
     editButton.style.display = 'none';
   } else {
-    renderHeroView(heroes[heroSelect.value]);
+    renderHeroView(heroes.find(hero => hero.id == [heroSelect.value]));
     viewMode.style.display = 'block';
     editMode.style.display = 'none';
     saveButton.style.display = 'none';
@@ -339,12 +555,12 @@ function addNewHero() {
 
     // Refresh the hero dropdown
     refreshHeroDropdown();
-
+    populateFilterOptions();
     // Clear the input field
     document.getElementById('newHeroJson').value = '';
 
     // Set the newly added hero as selected
-    heroSelect.value = heroes.length - 1;
+    heroSelect.value = newHero.id;
     renderHeroView(newHero);
 
     alert('New hero added successfully!');
@@ -366,6 +582,14 @@ function refreshHeroDropdown() {
   });
 }
 
+function attachAbilityActionListeners() {
+  // Attach Move Up/Move Down and Remove functionality
+  document.getElementById('addAbilityButton').addEventListener('click', addAbilityField);
+  document.querySelectorAll('.remove-ability').forEach(btn => btn.addEventListener('click', removeAbilityField));
+  document.querySelectorAll('.move-up').forEach(btn => btn.addEventListener('click', moveAbilityUp));
+  document.querySelectorAll('.move-down').forEach(btn => btn.addEventListener('click', moveAbilityDown));
+}
+
 // Attach the addNewHero function to the button
 document.getElementById('addNewHeroButton').addEventListener('click', addNewHero);
 
@@ -375,9 +599,17 @@ document.getElementById('editButton').addEventListener('click', () => toggleEdit
 
 // Copy JSON to clipboard
 function copyToClipboard() {
-navigator.clipboard.writeText(JSON.stringify(heroes, null, 2))
-  .then(() => alert('Heroes JSON copied to clipboard!'))
-  .catch(err => alert('Failed to copy JSON: ' + err));
+  navigator.clipboard.writeText(JSON.stringify(heroes, null, 2))
+    .then(() => alert('Heroes JSON copied to clipboard!'))
+    .catch(err => alert('Failed to copy JSON: ' + err));
+}
+
+function copyHeroToClipboard(){
+  var selectedID = document.getElementById('heroSelect').value;
+  var hero = heroes.find(hero => hero.id == selectedID);
+  navigator.clipboard.writeText(JSON.stringify(hero), null, 2)
+    .then(() => alert('The Json for ' + hero.name + ' has been copied to the clipboard.'))
+    .catch(err => alert('Failed to copy JSON: ' + err));
 }
 
 async function saveHeroesToAWS() {
@@ -396,7 +628,9 @@ async function saveHeroesToAWS() {
     }
 
     const result = await response.json();
-    alert(result.message);
+    if (result.statusCode == 200) {
+      alert("Heroes JSON successfully uploaded to S3!");
+    }
   } catch (error) {
     console.error('Error saving heroes:', error);
     alert('Failed to save heroes. Please try again.');
@@ -408,26 +642,128 @@ async function saveHeroesToAWS() {
 // Attach the saveHeroes function to the "Save" button
 document.getElementById('awsButton').addEventListener('click', saveHeroesToAWS);
 
+async function uploadImageToS3(imageUrl, guid) {
+  const bucketUrl = "https://hero-editor.s3.ap-southeast-2.amazonaws.com/";
+  const relativePath = `carousel-images/${guid}.png`;
+  const uploadUrl = `${bucketUrl}${relativePath}`;
+
+  // Fetch the image
+  const response = await fetch(imageUrl);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch image: ${response.statusText}`);
+  }
+  const imageBlob = await response.blob();
+  console.log(imageBlob.size);
+  // Upload to S3
+  const uploadResponse = await fetch(uploadUrl, {
+    method: "PUT",
+    body: imageBlob,
+    headers: {
+      "Content-Type": "image/png"
+    },
+  });
+  console.log(uploadResponse);
+  if (!uploadResponse.ok) {
+    throw new Error(`Failed to upload to S3: ${uploadResponse.statusText}`);
+  }
+
+  return relativePath;
+}
 
 // Download JSON
 function downloadJSON() {
-const jsonBlob = new Blob([JSON.stringify(heroes, null, 2)], { type: 'application/json' });
-const downloadLink = document.createElement('a');
-downloadLink.href = URL.createObjectURL(jsonBlob);
-downloadLink.download = 'heroes.json';
-downloadLink.click();
+  const jsonBlob = new Blob([JSON.stringify(heroes, null, 2)], { type: 'application/json' });
+  const downloadLink = document.createElement('a');
+  downloadLink.href = URL.createObjectURL(jsonBlob);
+  downloadLink.download = 'heroes.json';
+  downloadLink.click();
+}
+
+function wrapQuotes(text) {
+  // Match straight quotes and smart quotes
+  return text.replace(/["“”]([^"“”]*)["“”]/g, '<span class="quotespan">$1</span>');
 }
 
 // Initialize
-renderHeroOptions();
+renderHeroOptions(heroes);
+populateFilterOptions();
 renderHeroView(heroes[0]);
-
+renderHeroList(heroes);
 const params = new Proxy(new URLSearchParams(window.location.search), {
   get: (searchParams, prop) => searchParams.get(prop),
 });
 // Get the value of "some_key" in eg "https://example.com/?some_key=some_value"
 let isAdmin = params.admin;
-if(isAdmin == "true"){
+if (isAdmin == "true") {
   var adminDiv = document.getElementById('admincontrols');
   adminDiv.style = "";
+}
+
+function renderHeroList(heroes) {
+  const heroesContainer = document.getElementById('heroes-container');
+  heroesContainer.innerHTML = ''; // Clear existing list
+
+  heroes.forEach((hero, index) => {
+    const heroItem = document.createElement('li');
+    heroItem.classList.add('hero-item');
+
+    heroItem.innerHTML = `
+          <span>${hero.name} (${hero.uniqueClassName}) (${hero.id})</span>
+          <button class="delete-hero" data-index="${index}">Delete</button>
+      `;
+
+    heroesContainer.appendChild(heroItem);
+  });
+
+  // Add event listeners to all delete buttons
+  const deleteButtons = document.querySelectorAll('.delete-hero');
+  deleteButtons.forEach(button => {
+    button.addEventListener('click', (event) => {
+      const index = event.target.dataset.index;
+      deleteHero(index);
+    });
+  });
+}
+
+function deleteHero(index) {
+  if (confirm(`Are you sure you want to delete this hero?`)) {
+    // Remove hero from collection
+    heroes.splice(index, 1);
+
+    // Save the updated collection back to S3
+    //saveHeroesCollection();
+
+    // Re-render the list
+    renderHeroOptions(heroes);
+    populateFilterOptions();
+    renderHeroList(heroes);
+    renderHeroView(heroes[0]);
+  }
+}
+
+const addMaximumScaleToMetaViewport = () => {
+  const el = document.querySelector('meta[name=viewport]');
+
+  if (el !== null) {
+    let content = el.getAttribute('content');
+    let re = /maximum\-scale=[0-9\.]+/g;
+
+    if (re.test(content)) {
+      content = content.replace(re, 'maximum-scale=1.0');
+    } else {
+      content = [content, 'maximum-scale=1.0'].join(', ')
+    }
+
+    el.setAttribute('content', content);
+  }
+};
+
+const disableIosTextFieldZoom = addMaximumScaleToMetaViewport;
+
+// https://stackoverflow.com/questions/9038625/detect-if-device-is-ios/9039885#9039885
+const checkIsIOS = () =>
+  /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+if (checkIsIOS()) {
+  disableIosTextFieldZoom();
 }
