@@ -299,3 +299,12 @@ body {
     }
   }
 }
+
+.level:nth-child(even){
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+
+.level {
+  padding: 10px;
+}

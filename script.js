@@ -31,7 +31,7 @@ function populateFilterOptions() {
   heroFilter.innerHTML = uniqueClasses.map(primaryClass => `
     <option value="${primaryClass}">${primaryClass === 'all' ? 'All Classes' : primaryClass}</option>
   `).join('');
-  
+
 }
 
 function filterHeroes() {
@@ -129,19 +129,39 @@ function renderHeroView(hero) {
       </div>
       <div class="basicAttack class-attribute">
         <h2>Basic Attack</h2>
-        <p>${hero.basicAttack}</p>
+        <p><strong>${hero.basicAttack.type === 'contact' ? 'Close contact attack' : 'Ranged attack'}</strong>
+        <br />${hero.basicAttack.description}</p>
       </div>
       <div class="abilities class-attribute">
         <h2>Abilities</h2>
-        <ol>
-          ${hero.abilities.map(ability => `
-            <li>
-              <p><strong>${ability.name}</strong></p>
-              <p>${ability.description}</p>
-              <p>An <strong>${ability.type}</strong> ability from the <strong>${ability.class}</strong> specialty.</p>
-            </li>
+        ${hero.abilityProgression.length > 0 ? `
+        ${hero.abilityProgression.map(currentLevel => `
+            <div class="level">
+              <h3>Level ${currentLevel.level}</h3>
+              <h4>Recommended Attributes at this level</h4>
+              <p>
+                Health: <strong>${currentLevel.recommendedAttributes.health}</strong><br />
+                Attack: <strong>${currentLevel.recommendedAttributes.attack}</strong><br />
+                Energy: <strong>${currentLevel.recommendedAttributes.energy}</strong>
+              </p>
+              ${currentLevel.changes.length > 0 ? ` 
+              <h4>Changes  in this level:</h4>
+              <ul>
+                 ${currentLevel.changes.map(change => `<li>${change}</li>`).join('')}
+              </ul>` : ""}
+              <h4>Abilities</h4>
+              <ul>
+                ${currentLevel.abilities.map(ability => `
+                  <li>
+                    <p><strong>${ability.name}</strong></p>
+                    <p>${ability.description}</p>
+                    <p>An <strong>${ability.type}</strong> ability from the <strong>${ability.specialisation}</strong> specialisation${ability.type === "Passive" ? "." : `, it requires <strong>${ability.energyCost} energy to use.</strong>`}</p>
+                  </li>
+                    `).join('')}
+              </ul>
+            </div>
           `).join('')}
-        </ol>
+        ` : '<p>Still being developed.</p>'}
       </div>
       <div class="personality class-attribute">
         <h2>Personality</h2>
@@ -215,26 +235,45 @@ function renderEditMode(hero) {
       <textarea id="editBasicAttack">${hero.basicAttack}</textarea>
     </div>
     <div class="edit-section">
-      <label for="editAbilities">Abilities:</label>
-      <div id="abilitiesList">
-        ${hero.abilities.map((ability, index) => `
-          <div class="ability-item" data-index="${index}">
-            <input type="text" class="ability-name" data-index="${index}" value="${ability.name}" placeholder="Ability Name" />
-            <select data-index="${index}" class="ability-type">
-              <option value="Active" ${ability.type === 'Active' ? 'selected' : ''}>Active</option>
-              <option value="Active (Once Per Adventure)" ${ability.type === 'Active (Once Per Adventure)' ? 'selected' : ''}>Active (Once Per Adventure)</option>
-              <option value="Passive" ${ability.type === 'Passive' ? 'selected' : ''}>Passive</option>
-              </select>
-            <input type="text" data-index="${index}" class="ability-class" value="${ability.class}" placeholder="Class" />
-            <textarea class="ability-description" data-index="${index}" placeholder="Ability Description">${ability.description}</textarea>
-            <br />
-            <button class="move-up">Move Up</button>
-            <button class="move-down">Move Down</button>
-            <button class="remove-ability" data-index="${index}">Remove</button>
+      <label for="editAbilityProgression">Ability Progression:</label>
+      <div id="editAbilityProgression">
+        ${hero.abilityProgression.map((levelData, levelIndex) => `
+          <div class="ability-level" data-level-index="${levelIndex}">
+            <h4 class="level-number">Level ${levelData.level}</h4>
+            <div>
+              <label>Recommended Attributes:</label>
+              <input type="number" class="recommended-health" placeholder="Health" value="${levelData.recommendedAttributes.health}" />
+              <input type="number" class="recommended-attack" placeholder="Attack" value="${levelData.recommendedAttributes.attack}" />
+              <input type="number" class="recommended-energy" placeholder="Energy" value="${levelData.recommendedAttributes.energy}" />
+            </div>
+            <div>
+              <label>Changes:</label>
+              <textarea class="level-changes">${levelData.changes.join('\n')}</textarea>
+            </div>
+            <div class="level-abilities">
+              <label>Abilities:</label>
+              ${levelData.abilities.map((ability, abilityIndex) => `
+                <div class="ability-item" data-ability-index="${abilityIndex}">
+                  <input type="text" class="ability-name" placeholder="Name" value="${ability.name}" />
+                  <select class="ability-type">
+                    <option value="Active" ${ability.type === 'Active' ? 'selected' : ''}>Active</option>
+                    <option value="Passive" ${ability.type === 'Passive' ? 'selected' : ''}>Passive</option>
+                    <option value="Active (Once Per Adventure)" ${ability.type === 'Active (Once Per Adventure)' ? 'selected' : ''}>Active (Once Per Adventure)</option>
+                  </select>
+                  <input type="text" class="ability-specialisation" placeholder="Specialisation" value="${ability.specialisation}" />
+                  <textarea class="ability-description" placeholder="Description">${ability.description}</textarea>
+                  <input type="number" class="ability-energy-cost" placeholder="Energy Cost" value="${ability.energyCost || ''}" />
+                  <button class="remove-ability">Remove</button>
+                </div>
+              `).join('')}
+              <button class="add-ability">Add Ability</button>
+            </div>
+            <button style="background-color: indianred; width: 150px; margin: 20px 0;" class="remove-level">Remove Level</button>
           </div>
         `).join('')}
-      </div>
-      <button id="addAbilityButton">Add Ability</button>
+       
+        </div>
+      <button id="addLevelButton">Add Level</button>
     </div>
     <div class="edit-section">
       <label for="editFavouritePhrases">Favourite Phrases:</label>
@@ -284,11 +323,60 @@ function renderEditMode(hero) {
   // Attach event listeners
   document.getElementById('addPhraseButton').addEventListener('click', addPhraseField);
   document.getElementById('addImageButton').addEventListener('click', addImageField);
-  
+
   document.querySelectorAll('.remove-phrase').forEach(btn => btn.addEventListener('click', removePhraseField));
   document.querySelectorAll('.remove-image').forEach(btn => btn.addEventListener('click', removeImageField));
-  attachAbilityActionListeners();
+  attachAbilityEventListeners();
   attachImageUploadEventListeners();
+}
+
+function attachAbilityEventListeners() {
+  // Add ability
+  document.querySelectorAll('.add-ability').forEach(button => {
+    button.addEventListener('click', event => {
+      const levelIndex = event.target.closest('.ability-level').dataset.levelIndex;
+      const levelData = hero.abilityProgression[levelIndex];
+      levelData.abilities.push({
+        name: '',
+        type: 'Active',
+        specialisation: '',
+        description: '',
+        energyCost: 1
+      });
+      renderAbilityProgression();
+    });
+  });
+
+  // Remove ability
+  document.querySelectorAll('.remove-ability').forEach(button => {
+    button.addEventListener('click', event => {
+      const levelIndex = event.target.closest('.ability-level').dataset.levelIndex;
+      const abilityIndex = event.target.closest('.ability-item').dataset.abilityIndex;
+      hero.abilityProgression[levelIndex].abilities.splice(abilityIndex, 1);
+      renderAbilityProgression();
+    });
+  });
+
+  // Remove Level
+
+  document.querySelectorAll('.remove-level').forEach(button => {
+    button.addEventListener('click', event => {
+      const levelIndex = event.target.closest('.ability-level').dataset.levelIndex;
+      hero.abilityProgression.splice(levelIndex, 1);
+      renderAbilityProgression();
+    })
+  });
+
+  // Add level{}
+  document.getElementById('addLevelButton').addEventListener('click', () => {
+    hero.abilityProgression.push({
+      level: hero.abilityProgression.length + 1,
+      recommendedAttributes: { health: 0, attack: 0, energy: 0 },
+      changes: [],
+      abilities: []
+    });
+    renderEditMode(hero);
+  });
 }
 
 function attachImageUploadEventListeners() {
@@ -312,11 +400,11 @@ function moveAbilityUp(event) {
   const index = parseInt(abilityItem.dataset.index);
 
   if (index > 0) {
-    
+
     syncAbilitiesWithUI();
     // Swap abilities in the array
     [hero.abilities[index - 1], hero.abilities[index]] =
-    [hero.abilities[index], hero.abilities[index - 1]];
+      [hero.abilities[index], hero.abilities[index - 1]];
 
     // Re-render the abilities list
     renderAbilities();
@@ -331,7 +419,7 @@ function moveAbilityDown(event) {
     syncAbilitiesWithUI();
     // Swap abilities in the array
     [hero.abilities[index], hero.abilities[index + 1]] =
-    [hero.abilities[index + 1], hero.abilities[index]];
+      [hero.abilities[index + 1], hero.abilities[index]];
 
     // Re-render the abilities list
     renderAbilities();
@@ -340,29 +428,46 @@ function moveAbilityDown(event) {
 
 document.getElementById('heroFilter').addEventListener('change', filterHeroes);
 
-function renderAbilities() {
-  const abilitiesList = document.getElementById('abilitiesList');
+function renderAbilityProgression() {
+  const abilitiesProgressionList = document.getElementById('editAbilityProgression');
 
   // Clear and re-render the abilities
-  abilitiesList.innerHTML = hero.abilities.map((ability, index) => `
-    <div class="ability-item" data-index="${index}">
-      <input type="text" class="ability-name" value="${ability.name}" placeholder="Ability Name" />
-      <select class="ability-type">
-        <option value="Active" ${ability.type === 'Active' ? 'selected' : ''}>Active</option>
-        <option value="Active (Once Per Adventure)" ${ability.type === 'Active (Once Per Adventure)' ? 'selected' : ''}>Active (Once Per Adventure)</option>
-        <option value="Passive" ${ability.type === 'Passive' ? 'selected' : ''}>Passive</option>
-      </select>
-      <input type="text" class="ability-class" value="${ability.class}" placeholder="Class" />
-      <textarea class="ability-description" placeholder="Ability Description">${ability.description}</textarea>
-      <br />
-      <button class="move-up">Move Up</button>
-      <button class="move-down">Move Down</button>
-      <button class="remove-ability">Remove</button>
+  abilitiesProgressionList.innerHTML = hero.abilityProgression.map((levelData, levelIndex) => `
+    <div class="ability-level" data-level-index="${levelIndex}">
+      <h4 class="level-number">Level ${levelData.level}</h4>
+      <div>
+        <label>Recommended Attributes:</label>
+        <input type="number" class="recommended-health" placeholder="Health" value="${levelData.recommendedAttributes.health}" />
+        <input type="number" class="recommended-attack" placeholder="Attack" value="${levelData.recommendedAttributes.attack}" />
+        <input type="number" class="recommended-energy" placeholder="Energy" value="${levelData.recommendedAttributes.energy}" />
+      </div>
+      <div>
+        <label>Changes:</label>
+        <textarea class="level-changes">${levelData.changes.join('\n')}</textarea>
+      </div>
+      <div class="level-abilities">
+        <label>Abilities:</label>
+        ${levelData.abilities.map((ability, abilityIndex) => `
+          <div class="ability-item" data-ability-index="${abilityIndex}">
+            <input type="text" class="ability-name" placeholder="Name" value="${ability.name}" />
+            <select class="ability-type">
+              <option value="Active" ${ability.type === 'Active' ? 'selected' : ''}>Active</option>
+              <option value="Passive" ${ability.type === 'Passive' ? 'selected' : ''}>Passive</option>
+              <option value="Active (Once Per Adventure)" ${ability.type === 'Active (Once Per Adventure)' ? 'selected' : ''}>Active (Once Per Adventure)</option>
+            </select>
+            <input type="text" class="ability-specialisation" placeholder="Specialisation" value="${ability.specialisation}" />
+            <textarea class="ability-description" placeholder="Description">${ability.description}</textarea>
+            <input type="number" class="ability-energy-cost" placeholder="Energy Cost" value="${ability.energyCost || ''}" />
+            <button class="remove-ability">Remove</button>
+          </div>
+        `).join('')}
+        <button class="add-ability">Add Ability</button>
+      </div>
     </div>
   `).join('');
 
   // Re-attach event listeners after re-rendering
-  attachAbilityActionListeners();
+  attachAbilityEventListeners();
 }
 
 
@@ -397,34 +502,14 @@ async function handleImageUpload(event) {
   }
 }
 
-const hero=heroes[0];
+var hero = heroes[0];
 
 heroSelect.addEventListener("change", (e) => {
-  const hero = heroes.find(hero => hero.id == e.target.value);
+  hero = heroes.find(hero => hero.id == e.target.value);
   renderHeroView(hero);
   renderEditMode(hero);
 });
 
-// Function to add a new ability field
-function addAbilityField() {
-  hero.abilities.push({
-    name: '',
-    type: 'Active',
-    class: '',
-    description: ''
-  });
-
-  // Re-render the abilities list
-  renderAbilities();
-}
-
-
-// Function to remove an ability field
-function removeAbilityField(event) {
-  const index = parseInt(event.target.closest('.ability-item').dataset.index);
-  hero.abilities.splice(index, 1); // Remove from array
-  renderAbilities(); // Re-render the abilities list
-}
 
 // Function to add a new phrase field
 function addPhraseField() {
@@ -491,11 +576,22 @@ function saveChanges() {
   hero.outro = document.getElementById('editOutro').value;
 
   // Update abilities
-  hero.abilities = Array.from(document.querySelectorAll('.ability-item')).map(abilityItem => ({
-    name: abilityItem.querySelector('.ability-name').value,
-    type: abilityItem.querySelector('.ability-type').value,
-    class: abilityItem.querySelector('.ability-class').value,
-    description: abilityItem.querySelector('.ability-description').value
+  // Save ability progression
+  hero.abilityProgression = Array.from(document.querySelectorAll('.ability-level')).map(levelElement => ({
+    level: parseInt(levelElement.querySelector('.level-number').textContent.replace('Level ', '')),
+    recommendedAttributes: {
+      health: parseInt(levelElement.querySelector('.recommended-health').value),
+      attack: parseInt(levelElement.querySelector('.recommended-attack').value),
+      energy: parseInt(levelElement.querySelector('.recommended-energy').value)
+    },
+    changes: levelElement.querySelector('.level-changes').value.split('\n'),
+    abilities: Array.from(levelElement.querySelectorAll('.ability-item')).map(abilityElement => ({
+      name: abilityElement.querySelector('.ability-name').value,
+      type: abilityElement.querySelector('.ability-type').value,
+      specialisation: abilityElement.querySelector('.ability-specialisation').value,
+      description: abilityElement.querySelector('.ability-description').value,
+      energyCost: parseInt(abilityElement.querySelector('.ability-energy-cost').value) || 0
+    }))
   }));
 
   // Update favourite phrases
@@ -582,14 +678,6 @@ function refreshHeroDropdown() {
   });
 }
 
-function attachAbilityActionListeners() {
-  // Attach Move Up/Move Down and Remove functionality
-  document.getElementById('addAbilityButton').addEventListener('click', addAbilityField);
-  document.querySelectorAll('.remove-ability').forEach(btn => btn.addEventListener('click', removeAbilityField));
-  document.querySelectorAll('.move-up').forEach(btn => btn.addEventListener('click', moveAbilityUp));
-  document.querySelectorAll('.move-down').forEach(btn => btn.addEventListener('click', moveAbilityDown));
-}
-
 // Attach the addNewHero function to the button
 document.getElementById('addNewHeroButton').addEventListener('click', addNewHero);
 
@@ -604,7 +692,7 @@ function copyToClipboard() {
     .catch(err => alert('Failed to copy JSON: ' + err));
 }
 
-function copyHeroToClipboard(){
+function copyHeroToClipboard() {
   var selectedID = document.getElementById('heroSelect').value;
   var hero = heroes.find(hero => hero.id == selectedID);
   navigator.clipboard.writeText(JSON.stringify(hero), null, 2)

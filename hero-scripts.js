@@ -125,17 +125,41 @@ function renderHeroView(hero) {
         <h2>Appearance</h2>
         <p>${hero.appearance.description}</p>
       </div>
+      <div class="basicAttack class-attribute">
+        <h2>Basic Attack</h2>
+        <p><strong>${hero.basicAttack.type === 'contact' ? 'Close contact attack' : 'Ranged attack'}</strong>
+        <br />${hero.basicAttack.description}</p>
+      </div>
       <div class="abilities class-attribute">
         <h2>Abilities</h2>
-        <ol>
-          ${hero.abilities.map(ability => `
-            <li>
-              <p><strong>${ability.name}</strong></p>
-              <p>${ability.description}</p>
-              <p>An <strong>${ability.type}</strong> ability from the <strong>${ability.class}</strong> specialty.</p>
-            </li>
+        ${hero.abilityProgression.length > 0 ? `
+        ${hero.abilityProgression.map(currentLevel => `
+            <div class="level">
+              <h3>Level ${currentLevel.level}</h3>
+              <h4>Recommended Attributes at this level</h4>
+              <p>
+                Health: <strong>${currentLevel.recommendedAttributes.health}</strong><br />
+                Attack: <strong>${currentLevel.recommendedAttributes.attack}</strong><br />
+                Energy: <strong>${currentLevel.recommendedAttributes.energy}</strong>
+              </p>
+              ${currentLevel.changes.length > 0 ? ` 
+              <h4>Changes  in this level:</h4>
+              <ul>
+                 ${currentLevel.changes.map(change => `<li>${change}</li>`).join('')}
+              </ul>` : ""}
+              <h4>Abilities</h4>
+              <ul>
+                ${currentLevel.abilities.map(ability => `
+                  <li>
+                    <p><strong>${ability.name}</strong></p>
+                    <p>${ability.description}</p>
+                    <p>An <strong>${ability.type}</strong> ability from the <strong>${ability.specialisation}</strong> specialisation${ability.type === "Passive" ? "." : `, it requires <strong>${ability.energyCost} energy to use.</strong>`}</p>
+                  </li>
+                    `).join('')}
+              </ul>
+            </div>
           `).join('')}
-        </ol>
+        ` : '<p>Still being developed.</p>'}
       </div>
       <div class="personality class-attribute">
         <h2>Personality</h2>

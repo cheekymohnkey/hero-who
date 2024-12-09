@@ -163,7 +163,8 @@ body {
 }
 
 /* General styling for the select list */
-#heroSelect, #heroFilter {
+#heroSelect,
+#heroFilter {
   width: 100%;
   /* Full-width dropdown */
   max-width: 400px;
@@ -288,7 +289,7 @@ body {
   resize: vertical;
 }
 
-#editMode #abilitiesList .ability-item{
+#editMode #abilitiesList .ability-item {
   background-color: #eee;
 }
 
@@ -392,6 +393,17 @@ button:hover {
 }
 
 #abilitiesList div:nth-child(even) {
+  background-color: #eeeeee;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.remove-level {
+  background-color: indianred;
+  width: 150px;
+}
+
+div.ability-level:nth-child(odd){
   background-color: #eeeeee;
   border-radius: 5px;
   padding: 10px;
