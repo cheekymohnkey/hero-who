@@ -2206,6 +2206,231 @@ const heroes = [
             ]
         }
     ],
+    "personality": "Zenpaw embodies serenity and strength, balancing wisdom and compassion with a warrior's resolve. His calm demeanor and gentle humor inspire allies, while his unshakable optimism and skillful combat ability strike fear into foes.",
+    "favouritePhrases": [
+      "Balance is the foundation of all things.",
+      "Strength tempered by wisdom is the path to harmony.",
+      "Even the strongest tree bends with the wind."
+    ],
+    "background": "Raised in a hidden monastery, Zenpaw learned to balance physical strength with spiritual wisdom. After his peaceful sanctuary was attacked, he became a wandering monk, dedicating his life to protecting the innocent and teaching others the value of balance and inner peace.",
+    "mantra": "Peace is the goal, but strength is the path.",
+    "outro": "Zenpaw’s journey is one of balance and justice, using his martial discipline and spiritual guidance to inspire hope and defend against chaos.",
+    "images": []
+  },
+  {
+    "id": "e3d1f924-9013-4b64-b0f5-2b7e4f93f27e",
+    "name": "Zian",
+    "intro": "Zian is a swift and electrifying defender, embodying the untamed spirit of storm and sky with their unique blend of elegance and ferocity.",
+    "primaryClass": "Striker",
+    "secondaryClass": "Defender",
+    "uniqueClassName": "Stormbound Sentinel",
+    "appearance": {
+      "description": "Zian is a mesmerizing hybrid of owl and cat, combining the sleek agility of a feline with the commanding majesty of an owl. Their fur and feathers shift in vibrant shades of blue and green, glowing faintly as if charged with electricity. Lightning bolt motifs run along their wings, tail, and the sides of their sleek body, pulsing with energy. Their large, glowing yellow eyes radiate intelligence and an unyielding focus, while their sharp, tufted ears resemble an owl’s, adding to their regal appearance. Zian’s wings shimmer as they extend, leaving faint, crackling streaks of energy in the air, and their feline paws are tipped with razor-sharp talons that gleam in the light. Their tail, ending in a tuft shaped like a small bolt of lightning, twitches with barely contained energy."
+    },
+"basicAttack": {
+  "type": "ranged",
+  "description": "Zian channels celestial energy through their staff, releasing a radiant beam of starlight that arcs gracefully toward their target."
+},
+  "abilityProgression": [
+    {
+        "level": 1,
+        "recommendedAttributes": {
+            "health": 3,
+            "attack": 2,
+            "energy": 2
+        },
+        "changes": [],
+        "abilities": [
+            {
+                "name": "Thunderclap Strike",
+                "type": "Active",
+                "specialisation": "Striker",
+                "energyCost": 1,
+                "description": "Zian swoops down with blinding speed, striking enemies with a lightning-infused slash that stuns and damages all enemies in a cone. Stun lasts for 1 round. Moment of Glory roll is reduced to 5 while airborne."
+            },
+            {
+                "name": "Skybound Prowess",
+                "type": "Passive",
+                "specialisation": "Striker",
+                "description": "When Zian uses an ability that puts them in flight, enemies require a roll of 5 or higher to hit Zian. This effect lasts until the end of the next turn."
+            }
+        ]
+    },
+    {
+        "level": 2,
+        "recommendedAttributes": {
+            "health": 4,
+            "attack": 4,
+            "energy": 3
+        },
+        "changes": [
+            "Added Electro Shield (Active)"
+        ],
+        "abilities": [
+            {
+                "name": "Thunderclap Strike",
+                "type": "Active",
+                "specialisation": "Striker",
+                "energyCost": 1,
+                "description": "Zian swoops down with blinding speed, striking enemies with a lightning-infused slash that stuns and damages all enemies in a cone. Stun lasts for 1 round. Moment of Glory roll is reduced to 5 while airborne."
+            },
+            {
+                "name": "Skybound Prowess",
+                "type": "Passive",
+                "specialisation": "Striker",
+                "description": "When Zian uses an ability that puts them in flight, enemies require a roll of 5 or higher to hit Zian. This effect lasts until the end of the next turn."
+            },
+            {
+                "name": "Electro Shield",
+                "type": "Active",
+                "specialisation": "Defender",
+                "energyCost": 1,
+                "description": "Zian envelops themselves or an ally in crackling energy, absorbing the next 2 points of health loss. Shield lasts for 2 rounds or until depleted."
+            }
+        ]
+    },
+    {
+        "level": 3,
+        "recommendedAttributes": {
+            "health": 5,
+            "attack": 6,
+            "energy": 4
+        },
+        "changes": [
+            "Improved Thunderclap Strike to reduce enemy roll results by 1 for 1 round after the attack.",
+            "Added Gale Cutter (Active)"
+        ],
+        "abilities": [
+            {
+                "name": "Thunderclap Strike",
+                "type": "Active",
+                "specialisation": "Striker",
+                "energyCost": 1,
+                "description": "Zian swoops down with blinding speed, striking enemies with a lightning-infused slash that stuns and damages all enemies in a cone. Stun lasts for 1 round. Reduces enemy roll results by 1 for 1 round. Moment of Glory roll is reduced to 5 while airborne."
+            },
+            {
+                "name": "Skybound Prowess",
+                "type": "Passive",
+                "specialisation": "Striker",
+                "description": "When Zian uses an ability that puts them in flight, enemies require a roll of 5 or higher to hit Zian. This effect lasts until the end of the next turn."
+            },
+            {
+                "name": "Electro Shield",
+                "type": "Active",
+                "specialisation": "Defender",
+                "energyCost": 1,
+                "description": "Zian envelops themselves or an ally in crackling energy, absorbing the next 2 points of health loss. Shield lasts for 2 rounds or until depleted."
+            },
+            {
+                "name": "Gale Cutter",
+                "type": "Active",
+                "specialisation": "Striker",
+                "energyCost": 1,
+                "description": "Zian channels the winds into their claws, delivering a series of precision strikes that feel like a flurry. Mechanically, this counts as a single attack. On a Moment of Glory, the attack deals double Zenpaw's attack damage and disarms the enemy for 1 round, lowering their next roll by 1."
+            }
+        ]
+    },
+    {
+        "level": 4,
+        "recommendedAttributes": {
+            "health": 6,
+            "attack": 8,
+            "energy": 5
+        },
+        "changes": [
+            "Improved Electro Shield to absorb 3 points of health loss.",
+            "Added Momentum Guard (Passive)"
+        ],
+        "abilities": [
+            {
+                "name": "Thunderclap Strike",
+                "type": "Active",
+                "specialisation": "Striker",
+                "energyCost": 1,
+                "description": "Zian swoops down with blinding speed, striking enemies with a lightning-infused slash that stuns and damages all enemies in a cone. Stun lasts for 1 round. Reduces enemy roll results by 1 for 1 round. Moment of Glory roll is reduced to 5 while airborne."
+            },
+            {
+                "name": "Skybound Prowess",
+                "type": "Passive",
+                "specialisation": "Striker",
+                "description": "When Zian uses an ability that puts them in flight, enemies require a roll of 5 or higher to hit Zian. This effect lasts until the end of the next turn."
+            },
+            {
+                "name": "Electro Shield",
+                "type": "Active",
+                "specialisation": "Defender",
+                "energyCost": 1,
+                "description": "Zian envelops themselves or an ally in crackling energy, absorbing the next 3 points of health loss. Shield lasts for 2 rounds or until depleted."
+            },
+            {
+                "name": "Gale Cutter",
+                "type": "Active",
+                "specialisation": "Striker",
+                "energyCost": 1,
+                "description": "Zian channels the winds into their claws, delivering a series of precision strikes that feel like a flurry. Mechanically, this counts as a single attack. On a Moment of Glory, the attack deals double Zenpaw's attack damage and disarms the enemy for 1 round, lowering their next roll by 1."
+            },
+            {
+                "name": "Momentum Guard",
+                "type": "Passive",
+                "specialisation": "Defender",
+                "description": "When Zian moves during their turn, reduce the next instance of health loss by 1. Effect lasts for 1 round."
+            }
+        ]
+    },
+    {
+        "level": 5,
+        "recommendedAttributes": {
+            "health": 7,
+            "attack": 10,
+            "energy": 6
+        },
+        "changes": [
+            "Added Tempest Barrage (Active, Once per Adventure)"
+        ],
+        "abilities": [
+            {
+                "name": "Thunderclap Strike",
+                "type": "Active",
+                "specialisation": "Striker",
+                "energyCost": 1,
+                "description": "Zian swoops down with blinding speed, striking enemies with a lightning-infused slash that stuns and damages all enemies in a cone. Stun lasts for 1 round. Reduces enemy roll results by 1 for 1 round. Moment of Glory roll is reduced to 5 while airborne."
+            },
+            {
+                "name": "Skybound Prowess",
+                "type": "Passive",
+                "specialisation": "Striker",
+                "description": "When Zian uses an ability that puts them in flight, enemies require a roll of 5 or higher to hit Zian. This effect lasts until the end of the next turn."
+            },
+            {
+                "name": "Electro Shield",
+                "type": "Active",
+                "specialisation": "Defender",
+                "energyCost": 1,
+                "description": "Zian envelops themselves or an ally in crackling energy, absorbing the next 3 points of health loss. Shield lasts for 2 rounds or until depleted."
+            },
+            {
+                "name": "Gale Cutter",
+                "type": "Active",
+                "specialisation": "Striker",
+                "energyCost": 1,
+                "description": "Zian channels the winds into their claws, delivering a series of precision strikes that feel like a flurry. Mechanically, this counts as a single attack. On a Moment of Glory, the attack deals double Zenpaw's attack damage and disarms the enemy for 1 round, lowering their next roll by 1."
+            },
+            {
+                "name": "Momentum Guard",
+                "type": "Passive",
+                "specialisation": "Defender",
+                "description": "When Zian moves during their turn, reduce the next instance of health loss by 1. Effect lasts for 1 round."
+            },
+            {
+                "name": "Tempest Barrage",
+                "type": "Active (Once per Adventure)",
+                "specialisation": "Striker",
+                "energyCost": 2,
+                "description": "Zian summons a storm of lightning bolts that bombard the battlefield, dealing massive area damage and leaving behind static zones that reduce enemy roll results by 1 for 2 rounds."
+            }
+        ]
+    }
+],
     "personality": "Zian is a fiercely independent and enigmatic hero, preferring solitude in the untamed skies but always watching over those in need. They are intelligent and strategic, relying on their sharp mind as much as their physical prowess to outwit and overpower opponents. Though they can come across as aloof, Zian’s heart is fiercely loyal to the innocent and oppressed. They value freedom above all else and fight to protect it, believing that everyone deserves to soar without chains. Zian is wary of forming attachments but will risk everything to safeguard those they deem worthy of their protection.",
     "favouritePhrases": [
       "Ride the storm, for it brings both fury and freedom.",
