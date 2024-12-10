@@ -150,7 +150,7 @@ body {
 }
 
 /* General styling for the select list */
-#heroSelect, #heroFilter {
+#heroSelect, #heroFilter, #levelSelect {
   width: 100%;
   /* Full-width dropdown */
   max-width: 400px;
@@ -307,4 +307,72 @@ body {
 
 .level {
   padding: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+.character-sheet {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: white;
+  color: black;
+  max-width: 800px;
+  margin: auto;
+  border: 1px solid #ccc;
+}
+
+.character-sheet h1, .character-sheet h2, .character-sheet h3 {
+  margin-top: 20px;
+}
+
+.character-sheet table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.character-sheet table th, .character-sheet table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.character-sheet .level {
+  margin-top: 20px;
+}
+
+.hero-header, .hero-attributes, .hero-basic-attack, .hero-abilities,
+.hero-personality, .hero-items, .hero-currency {
+  margin-bottom: 30px;
+}
+
+@media print {
+  body {
+    background-color: white;
+  }
+  .hidden {
+    display: none;
+  }
+}
+
+.level {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.level:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.level h3 {
+  margin-top: 0;
+}
+
+.level ul {
+  list-style: none;
+  padding-left: 0;
 }

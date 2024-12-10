@@ -855,7 +855,7 @@ const heroes = [
     "name": "Mister Monkey Jocks",
     "intro": "Mister Monkey Jocks is a high-energy, gym-obsessed prankster who never misses a chance to flex his oversized gloves and his outrageous sense of humor. A fighter with flair, he's as likely to taunt his enemies with antics as he is to knock them out cold.",
     "primaryClass": "Striker",
-    "secondaryClass": "Support",
+    "secondaryClass": "Stealth",
     "uniqueClassName": "Prankster Pugilist",
     "appearance": {
       "description": "Mister Monkey Jocks is a short but stocky monkey with a powerful build that exudes energy and charisma. His bright red fur contrasts with his oversized, golden boxing gloves, which are etched with cheeky graffiti like 'BOOM!' and 'POW!'. He wears a pair of tattered gym shorts adorned with patches of bananas and dumbbells, and a whistle hangs around his neck. His mischievous grin and sparkling eyes suggest he’s always up to something. Mister Monkey Jocks has a prehensile tail that he uses for balance and to snag items mid-fight, adding to his unpredictable style."
@@ -865,7 +865,206 @@ const heroes = [
       "description": "Mister Monkey Jocks leaps into the fray with acrobatic flair, using his oversized boxing gloves to deliver a quick, jabbing punch, followed by a playful feint to keep his opponent guessing."
     },
     "abilityProgression": [
-    ],
+    {
+        "level": 1,
+        "recommendedAttributes": {
+            "health": 3,
+            "attack": 2,
+            "energy": 2
+        },
+        "changes": [],
+        "abilities": [
+            {
+                "name": "Jungle Jab",
+                "type": "Active",
+                "specialisation": "Striker",
+                "energyCost": 1,
+                "description": "A rapid jab with his golden gloves, dealing damage and reducing the enemy’s next roll result by 1 for 1 round."
+            },
+            {
+                "name": "Flex Defense",
+                "type": "Passive",
+                "specialisation": "Striker",
+                "description": "When he performs a successful attack Mister Monkey Jocks crazy antics keep his enemies guessing, enemies are required to roll +1 to hit him for 1 round."
+            }
+        ]
+    },
+    {
+        "level": 2,
+        "recommendedAttributes": {
+            "health": 4,
+            "attack": 4,
+            "energy": 3
+        },
+        "changes": [
+            "Added Banana Slip (Active, Stealth)."
+        ],
+        "abilities": [
+            {
+                "name": "Jungle Jab",
+                "type": "Active",
+                "specialisation": "Striker",
+                "energyCost": 1,
+                "description": "A rapid jab with his golden gloves, dealing damage and reducing the enemy’s next roll result by 1 for 1 round."
+            },
+            {
+                "name": "Flex Defense",
+                "type": "Passive",
+                "specialisation": "Striker",
+                "description": "When he performs a successful attack Mister Monkey Jocks crazy antics keep his enemies guessing, enemies are required to roll +1 to hit him for 1 round."
+            },
+            {
+                "name": "Banana Slip",
+                "type": "Active",
+                "specialisation": "Stealth",
+                "energyCost": 1,
+                "description": "Throws a banana peel onto the battlefield, creating a hazard. Enemies who move into it must roll to avoid slipping and losing their action."
+            }
+        ]
+    },
+    {
+        "level": 3,
+        "recommendedAttributes": {
+            "health": 5,
+            "attack": 6,
+            "energy": 4
+        },
+        "changes": [
+            "Improved Jungle Jab to deal +1 damage on a Moment of Glory.",
+            "Added Power Punch (Active)."
+        ],
+        "abilities": [
+            {
+                "name": "Jungle Jab",
+                "type": "Active",
+                "specialisation": "Striker",
+                "energyCost": 1,
+                "description": "A rapid jab with his golden gloves, dealing damage and reducing the enemy’s next roll result by 1 for 1 round. On a Moment of Glory, deals +1 damage."
+            },
+            {
+                "name": "Flex Defense",
+                "type": "Passive",
+                "specialisation": "Striker",
+                "description": "When he performs a successful attack Mister Monkey Jocks crazy antics keep his enemies guessing, enemies are required to roll +1 to hit him for 1 round."
+            },
+            {
+                "name": "Banana Slip",
+                "type": "Active",
+                "specialisation": "Stealth",
+                "energyCost": 1,
+                "description": "Throws a banana peel onto the battlefield, creating a hazard. Enemies who move into it must roll to avoid slipping and losing their action."
+            },
+            {
+                "name": "Power Punch",
+                "type": "Active",
+                "specialisation": "Striker",
+                "energyCost": 2,
+                "description": "A powerful uppercut that deals double damage and stuns the target for 1 round."
+            }
+        ]
+    },
+    {
+        "level": 4,
+        "recommendedAttributes": {
+            "health": 6,
+            "attack": 8,
+            "energy": 5
+        },
+        "changes": [
+            "Added Trickster's Tail (Active, Stealth)."
+        ],
+        "abilities": [
+            {
+                "name": "Jungle Jab",
+                "type": "Active",
+                "specialisation": "Striker",
+                "energyCost": 1,
+                "description": "A rapid jab with his golden gloves, dealing damage and reducing the enemy’s next roll result by 1 for 1 round. On a Moment of Glory, deals +1 damage."
+            },
+            {
+                "name": "Flex Defense",
+                "type": "Passive",
+                "specialisation": "Striker",
+                "description": "When he performs a successful attack Mister Monkey Jocks crazy antics keep his enemies guessing, enemies are required to roll +1 to hit him for 1 round."
+            },
+            {
+                "name": "Banana Slip",
+                "type": "Active",
+                "specialisation": "Stealth",
+                "energyCost": 1,
+                "description": "Throws a banana peel onto the battlefield, creating a hazard. Enemies who move into it must roll to avoid slipping and losing their action."
+            },
+            {
+                "name": "Power Punch",
+                "type": "Active",
+                "specialisation": "Striker",
+                "energyCost": 2,
+                "description": "A powerful uppercut that deals double damage and stuns the target for 1 round."
+            },
+            {
+                "name": "Trickster's Tail",
+                "type": "Active",
+                "specialisation": "Stealth",
+                "energyCost": 1,
+                "description": "Uses his prehensile tail to grab an enemy’s weapon or item, disabling their attack for 1 round."
+            }
+        ]
+    },
+    {
+        "level": 5,
+        "recommendedAttributes": {
+            "health": 7,
+            "attack": 10,
+            "energy": 6
+        },
+        "changes": [
+            "Added Monkey Mayhem (Active, Once per Adventure)."
+        ],
+        "abilities": [
+            {
+                "name": "Jungle Jab",
+                "type": "Active",
+                "specialisation": "Striker",
+                "energyCost": 1,
+                "description": "A rapid jab with his golden gloves, dealing damage and reducing the enemy’s next roll result by 1 for 1 round. On a Moment of Glory, deals +1 damage."
+            },
+            {
+                "name": "Flex Defense",
+                "type": "Passive",
+                "specialisation": "Striker",
+                "description": "When he performs a successful attack Mister Monkey Jocks crazy antics keep his enemies guessing, enemies are required to roll +1 to hit him for 1 round."
+            },
+            {
+                "name": "Banana Slip",
+                "type": "Active",
+                "specialisation": "Stealth",
+                "energyCost": 1,
+                "description": "Throws a banana peel onto the battlefield, creating a hazard. Enemies who move into it must roll to avoid slipping and losing their action."
+            },
+            {
+                "name": "Power Punch",
+                "type": "Active",
+                "specialisation": "Striker",
+                "energyCost": 2,
+                "description": "A powerful uppercut that deals double damage and stuns the target for 1 round."
+            },
+            {
+                "name": "Trickster's Tail",
+                "type": "Active",
+                "specialisation": "Stealth",
+                "energyCost": 1,
+                "description": "Uses his prehensile tail to grab an enemy’s weapon or item, disabling their attack for 1 round."
+            },
+            {
+                "name": "Monkey Mayhem",
+                "type": "Active (Once per Adventure)",
+                "specialisation": "Striker",
+                "energyCost": 3,
+                "description": "Mister Monkey Jocks unleashes a flurry of punches, dealing double damage to all enemies in range and reducing their roll results by 1 for 2 rounds."
+            }
+        ]
+    }
+],
     "basicAttack": {
       "type": "contact",
       "description": "Mister Monkey Jocks leaps into the fray with acrobatic flair, using his oversized boxing gloves to deliver a quick, jabbing punch, followed by a playful feint to keep his opponent guessing."

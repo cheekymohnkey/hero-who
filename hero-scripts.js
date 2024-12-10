@@ -130,36 +130,22 @@ function renderHeroView(hero) {
         <p><strong>${hero.basicAttack.type === 'contact' ? 'Close contact attack' : 'Ranged attack'}</strong>
         <br />${hero.basicAttack.description}</p>
       </div>
+      <div class="level-selector ${hero.abilityProgression.length == 0 ? 'hidden"' : ''}>
+        <label for="levelSelect">Select Level:</label>
+        <select id="levelSelect">
+          <option value="all">All Levels</option>
+          ${hero.abilityProgression
+            .map(
+              (level) => `<option value="${level.level}">Level ${level.level}</option>`
+            )
+            .join("")}
+        </select>
+      </div>
       <div class="abilities class-attribute">
         <h2>Abilities</h2>
-        ${hero.abilityProgression.length > 0 ? `
-        ${hero.abilityProgression.map(currentLevel => `
-            <div class="level">
-              <h3>Level ${currentLevel.level}</h3>
-              <h4>Recommended Attributes at this level</h4>
-              <p>
-                Health: <strong>${currentLevel.recommendedAttributes.health}</strong><br />
-                Attack: <strong>${currentLevel.recommendedAttributes.attack}</strong><br />
-                Energy: <strong>${currentLevel.recommendedAttributes.energy}</strong>
-              </p>
-              ${currentLevel.changes.length > 0 ? ` 
-              <h4>Changes  in this level:</h4>
-              <ul>
-                 ${currentLevel.changes.map(change => `<li>${change}</li>`).join('')}
-              </ul>` : ""}
-              <h4>Abilities</h4>
-              <ul>
-                ${currentLevel.abilities.map(ability => `
-                  <li>
-                    <p><strong>${ability.name}</strong></p>
-                    <p>${ability.description}</p>
-                    <p>An <strong>${ability.type}</strong> ability from the <strong>${ability.specialisation}</strong> specialisation${ability.type === "Passive" ? "." : `, it requires <strong>${ability.energyCost} energy to use.</strong>`}</p>
-                  </li>
-                    `).join('')}
-              </ul>
-            </div>
-          `).join('')}
-        ` : '<p>Still being developed.</p>'}
+        <div id="filteredAbilities">
+          <!-- Abilities will render dynamically based on selected level -->
+        </div>
       </div>
       <div class="personality class-attribute">
         <h2>Personality</h2>
@@ -198,7 +184,106 @@ function renderHeroView(hero) {
     </div>`;
     heroContainer.appendChild(caption);
   }
+  const levelSelect = document.getElementById("levelSelect");
+  levelSelect.addEventListener("change", () => {
+    const selectedValue = levelSelect.value;
+    if (selectedValue === "all") {
+      updateAbilitiesForAllLevels(hero);
+    } else {
+      updateAbilitiesForLevel(hero, parseInt(selectedValue, 10));
+    }
+  });
+
+  // Render abilities for "All Levels" by default
+  updateAbilitiesForAllLevels(hero);
 }
+
+function updateAbilitiesForAllLevels(hero) {
+  const filteredAbilitiesContainer = document.getElementById("filteredAbilities");
+
+  if(hero.abilityProgression.length > 0) {
+  filteredAbilitiesContainer.innerHTML = hero.abilityProgression
+    .map(
+      (level) => `
+        <div class="level">
+          <h3>Level ${level.level}</h3>
+          <h4>Recommended Attributes:</h4>
+          <p>
+            Health: <strong>${level.recommendedAttributes.health}</strong><br />
+            Attack: <strong>${level.recommendedAttributes.attack}</strong><br />
+            Energy: <strong>${level.recommendedAttributes.energy}</strong>
+          </p>
+          <h4>Abilities:</h4>
+          <ul>
+            ${level.abilities
+              .map(
+                (ability) => `
+                  <li>
+                    <p><strong>${ability.name}</strong></p>
+                    <p>${ability.description}</p>
+                    ${
+                      ability.type !== "Passive"
+                        ? `<p>Energy Cost: <strong>${ability.energyCost}</strong></p>`
+                        : ""
+                    }
+                  </li>
+                `
+              )
+              .join("")}
+          </ul>
+        </div>
+      `
+    )
+    .join("");
+  }
+  else
+  {
+    filteredAbilitiesContainer.innerHTML = "<p>This hero is still being full developed and as yet hasn't had their abilities developed.</p>"
+  }
+}
+
+function updateAbilitiesForLevel(hero, selectedLevel) {
+  const filteredAbilitiesContainer = document.getElementById("filteredAbilities");
+  const selectedLevelData = hero.abilityProgression.find(
+    (level) => level.level === selectedLevel
+  );
+
+  if (!selectedLevelData) {
+    filteredAbilitiesContainer.innerHTML = "<p>No abilities available for this level.</p>";
+    return;
+  }
+
+  filteredAbilitiesContainer.innerHTML = `
+    <div class="level">
+      <h3>Level ${selectedLevel}</h3>
+      <h4>Recommended Attributes:</h4>
+      <p>
+        Health: <strong>${selectedLevelData.recommendedAttributes.health}</strong><br />
+        Attack: <strong>${selectedLevelData.recommendedAttributes.attack}</strong><br />
+        Energy: <strong>${selectedLevelData.recommendedAttributes.energy}</strong>
+      </p>
+      <h4>Abilities:</h4>
+      <ul>
+        ${selectedLevelData.abilities
+          .map(
+            (ability) => `
+              <li>
+                <p><strong>${ability.name}</strong></p>
+                <p>${ability.description}</p>
+                ${
+                  ability.type !== "Passive"
+                    ? `<p>Energy Cost: <strong>${ability.energyCost}</strong></p>`
+                    : ""
+                }
+              </li>
+            `
+          )
+          .join("")}
+      </ul>
+    </div>
+  `;
+}
+
 
 function wrapQuotes(text) {
   // Match straight quotes and smart quotes
@@ -214,3 +299,118 @@ heroSelect.addEventListener("change", (e) => {
   const hero = heroes.find(hero => hero.id == e.target.value);
   renderHeroView(hero);
 });
+
+
+
+document
+  .getElementById("printCharacterSheetButton")
+  .addEventListener("click", () => {
+    const selectedHeroId = heroSelect.value;
+    const selectedHero = heroes.find((hero) => hero.id === selectedHeroId);
+    const selectedLevel = document.getElementById("levelSelect").value;
+    renderCharacterSheet(selectedHero, selectedLevel);
+  });
+
+  function renderCharacterSheet(hero, selectedLevel) {
+    const  container = document.getElementsByClassName("container")[0];
+    container.classList.add("hidden");
+    const characterSheet = document.getElementById("characterSheet");
+    const levelChosenIndex = selectedLevel !== "all" ? parseInt(selectedLevel) - 1: null;
+    const levelChosen = levelChosenIndex !== null ? hero.abilityProgression[levelChosenIndex] : null;
+    characterSheet.innerHTML = `
+      <div class="hero-header">
+        <h1>${hero.name}</h1>
+        <h2>${hero.uniqueClassName}</h2>
+        <p><strong>Primary Specialisation:</strong> ${hero.primaryClass}</p>
+        ${
+          hero.secondaryClass
+            ? `<p><strong>Secondary Specialisation:</strong> ${hero.secondaryClass}</p>`
+            : ""
+        }
+      </div>
+  
+      <div class="hero-attributes">
+        <h3>Attributes</h3>
+        <table>
+          <tr>
+            <th>Attribute</th>
+            <th>Maximum</th>
+            <th>Current</th>
+          </tr>
+          <tr>
+            <td>Health</td>
+            <td>${selectedLevel !== "all" ? `${hero.abilityProgression[levelChosenIndex].recommendedAttributes.health}` : ''}</td>
+            <td>______</td>
+          </tr>
+          <tr>
+            <td>Attack</td>
+            <td>${selectedLevel !== "all" ? `${hero.abilityProgression[levelChosenIndex].recommendedAttributes.attack}` : ''}</td>
+            <td>______</td>
+          </tr>
+          <tr>
+            <td>Energy</td>
+            <td>${selectedLevel !== "all" ? `${hero.abilityProgression[levelChosenIndex].recommendedAttributes.energy}` : ''}</td>
+            <td>______</td>
+          </tr>
+        </table>
+      </div>
+  
+      <div class="hero-basic-attack">
+        <h3>Basic Attack</h3>
+        <p>${hero.basicAttack.description}</p>
+      </div>
+  
+      ${levelChosen != null ? `<div class="level">
+            <h3>Abilities for Level ${levelChosen.level}</h3>
+            <ul>
+              ${levelChosen.abilities.map((ability) => `
+                <li><strong>${ability.name}</strong>: ${ability.description} ${
+      ability.type !== "Passive"
+        ? `(Energy Cost: ${ability.energyCost})`
+        : ""
+    }</li>
+              `).join('')}
+            </ul>
+          </div>` : ''}
+  
+      <div class="hero-personality">
+        <h3>Personality</h3>
+        <p>${hero.personality}</p>
+      </div>
+  
+      <div class="hero-items">
+        <h3>Items</h3>
+        <p>___________________________</p>
+        <p>___________________________</p>
+        <p>___________________________</p>
+      </div>
+  
+      <div class="hero-currency">
+        <h3>Dollar Bucks</h3>
+        <p>___________________________</p>
+      </div>
+
+      <div class="hero-abilities">
+        <h3>Hero Abilities and Attributes Progression</h3>
+        ${hero.abilityProgression.map((level) => `
+          <div class="level">
+            <h4>Level ${level.level}</h4>
+            <ul>
+              ${level.abilities.map((ability) => `
+                <li><strong>${ability.name}</strong>: ${ability.description} ${
+      ability.type !== "Passive"
+        ? `(Energy Cost: ${ability.energyCost})`
+        : ""
+    }</li>
+              `).join('')}
+            </ul>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  
+    characterSheet.classList.remove("hidden");
+    window.print();
+    characterSheet.classList.add("hidden");
+    container.classList.remove("hidden");
+  }
