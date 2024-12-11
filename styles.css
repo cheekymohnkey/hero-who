@@ -329,6 +329,7 @@ body {
   background-color: white;
   color: black;
   max-width: 800px;
+  min-width: 670px;
   margin: auto;
   border: 1px solid #ccc;
 }
@@ -358,12 +359,11 @@ body {
   margin-bottom: 30px;
 }
 
-@media print {
-  body {
-    background-color: white;
-  }
-  .hidden {
-    display: none;
+@media print {  
+  @page {
+    size: 210mm 297mm; /* landscape */
+    /* you can also specify margins here: */
+ /* for compatibility with both A4 and Letter */
   }
 }
 
