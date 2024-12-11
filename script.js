@@ -309,7 +309,7 @@ function renderEditMode(hero) {
     </div>
     <div class="edit-section">
       <label for="editMantra">Mantra:</label>
-      <textarea type="text" id="editMantra">${hero.mantra}"</textarea>
+      <textarea type="text" id="editMantra">${hero.mantra}</textarea>
     </div>
     <div class="edit-section">
       <label for="editOutro">Outro:</label>
@@ -661,7 +661,7 @@ function addNewHero() {
     const newHero = JSON.parse(newHeroJsonInput);
 
     // Validate required fields
-    if (!newHero.id || !newHero.name || !newHero.appearance || !newHero.abilities || !newHero.images) {
+    if (!newHero.id || !newHero.name || !newHero.appearance || !newHero.abilityProgression || !newHero.images) {
       throw new Error("Missing required fields: 'id', 'name', 'appearance', 'abilities', or 'images'.");
     }
 
@@ -807,7 +807,7 @@ if (isAdmin == "true") {
   adminDiv.style = "";
 }
 
-if(heroId.length > 0){
+if(heroId){
   selectElement("heroSelect", heroId);
   hero = heroes.find(hero => hero.id == heroId);
   renderHeroView(hero);
