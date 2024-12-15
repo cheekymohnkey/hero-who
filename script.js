@@ -714,7 +714,7 @@ function copyToClipboard() {
 function copyHeroToClipboard() {
   var selectedID = document.getElementById('heroSelect').value;
   var hero = heroes.find(hero => hero.id == selectedID);
-  navigator.clipboard.writeText(JSON.stringify(hero), null, 2)
+  navigator.clipboard.writeText(JSON.stringify(hero, null, 2))
     .then(() => alert('The Json for ' + hero.name + ' has been copied to the clipboard.'))
     .catch(err => alert('Failed to copy JSON: ' + err));
 }
