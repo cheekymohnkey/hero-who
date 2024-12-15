@@ -301,120 +301,46 @@ heroSelect.addEventListener("change", (e) => {
   renderHeroView(hero);
 });
 
+document.getElementById("printCharacterSheetButton").addEventListener("click", async () => {
 
+      // Get the selected hero from the heroes array
+      const heroId = document.getElementById("heroSelect").value;
+      const selectedHero = heroes.find(hero => hero.id === heroId);
 
-document
-  .getElementById("printCharacterSheetButton")
-  .addEventListener("click", () => {
-    const selectedHeroId = heroSelect.value;
-    const selectedHero = heroes.find((hero) => hero.id === selectedHeroId);
-    const selectedLevel = document.getElementById("levelSelect").value;
-    renderCharacterSheet(selectedHero, selectedLevel);
-  });
+      if (!selectedHero) {
+          alert("Hero not found. Please try again.");
+          return;
+      }
 
-function renderCharacterSheet(hero, selectedLevel) {
-  const container = document.getElementsByClassName("container")[0];
-  container.classList.add("hidden");
-  const characterSheet = document.getElementById("characterSheet");
-  const levelChosenIndex = selectedLevel !== "all" ? parseInt(selectedLevel) - 1 : null;
-  const levelChosen = levelChosenIndex !== null ? hero.abilityProgression[levelChosenIndex] : null;
-  characterSheet.innerHTML = `
-      
-  <img src="hero-images/${hero.id}.png" class="hero-image-print" />    
-  <div class="hero-header">
-        <h1>${hero.name}</h1>
-        <h2 style="margin-bottom: 0.15em;">${hero.uniqueClassName}</h2>
-        <p><strong>Primary Specialisation:</strong> ${hero.primaryClass}<br />
-        ${hero.secondaryClass
-      ? `<strong>Secondary Specialisation:</strong> ${hero.secondaryClass}</p>`
-      : ""
-    }
-      </div>
-  
-      <div class="hero-attributes">
+      // Define the API URL
+      const apiUrl = "https://33hodf5km5.execute-api.ap-southeast-2.amazonaws.com/prod/HeroPrint";
 
-      <h3>Attributes</h3>
-        <table>
-          <tr>
-            <th>Attribute</th>
-            <th>Maximum</th>
-            <th>Current</th>
-          </tr>
-          <tr>
-            <td>Health</td>
-            <td>${selectedLevel !== "all" ? `${hero.abilityProgression[levelChosenIndex].recommendedAttributes.health}` : ''}</td>
-            <td>______</td>
-          </tr>
-          <tr>
-            <td>Attack</td>
-            <td>${selectedLevel !== "all" ? `${hero.abilityProgression[levelChosenIndex].recommendedAttributes.attack}` : ''}</td>
-            <td>______</td>
-          </tr>
-          <tr>
-            <td>Energy</td>
-            <td>${selectedLevel !== "all" ? `${hero.abilityProgression[levelChosenIndex].recommendedAttributes.energy}` : ''}</td>
-            <td>______</td>
-          </tr>
-        </table>
-      </div>
-  
-      <div class="hero-basic-attack">
-        <h3>Basic Attack</h3>
-        <p>${hero.basicAttack.description}</p>
-      </div>
-  
-      ${levelChosen != null ? `<div class="level">
-            <h3>Abilities for Level ${levelChosen.level}</h3>
-            <ul>
-              ${levelChosen.abilities.map((ability) => `
-                <li><strong>${ability.name}</strong>: ${ability.description} ${ability.type !== "Passive"
-        ? `(Energy Cost: ${ability.energyCost})`
-        : ""
-      }</li>
-              `).join('')}
-            </ul>
-          </div>` : ''}
-  
-      
-  
-      <div class="hero-items">
-        <h3>Items</h3>
-        <p>___________________________</p>
-        <p>___________________________</p>
-        <p>___________________________</p>
-      </div>
-  
-      <div class="hero-currency">
-        <h3>Dollar Bucks</h3>
-        <p>___________________________</p>
-      </div>
-      <div class="hero-personality">
-        <h3>Personality</h3>
-        <p>${hero.personality}</p>
-      </div>
-      <div class="hero-abilities">
-        <h3>Hero Abilities and Attributes Progression</h3>
-        ${hero.abilityProgression.map((level) => `
-          <div class="level">
-            <h4>Level ${level.level}</h4>
-            <ul>
-              ${level.abilities.map((ability) => `
-                <li><strong>${ability.name}</strong>: ${ability.description} ${ability.type !== "Passive"
-          ? `(Energy Cost: ${ability.energyCost})`
-          : ""
-        }</li>
-              `).join('')}
-            </ul>
-          </div>
-        `).join('')}
-      </div>
-    `;
+      // Make the POST request to the Lambda function
+      const response = await fetch(apiUrl, {
+          method: "POST",
+          mode: "cors",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify(selectedHero) // Send the selected hero as JSON
+      });
 
-  characterSheet.classList.remove("hidden");
-  window.print();
-  characterSheet.classList.add("hidden");
-  container.classList.remove("hidden");
-}
+      // Process the PDF response
+      const pdfBlob = await response.blob();
+
+      // Create a download link for the PDF
+      const downloadLink = document.createElement("a");
+      downloadLink.href = URL.createObjectURL(pdfBlob);
+      downloadLink.download = `${selectedHero.name.replace(/\s+/g, "_")}_HeroSheet.pdf`;
+
+      // Trigger the download
+      downloadLink.click();
+
+      // Clean up the URL object after download
+      URL.revokeObjectURL(downloadLink.href);
+
+});
+
 
 const params = new Proxy(new URLSearchParams(window.location.search), {
   get: (searchParams, prop) => searchParams.get(prop),
