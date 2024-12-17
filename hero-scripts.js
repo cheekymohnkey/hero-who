@@ -305,7 +305,17 @@ document.getElementById("printCharacterSheetButton").addEventListener("click", a
 
       // Get the selected hero from the heroes array
       const heroId = document.getElementById("heroSelect").value;
-      const selectedHero = heroes.find(hero => hero.id === heroId);
+      var selectedHero = heroes.find(hero => hero.id === heroId);
+      const selectedLevel = document.getElementById("levelSelect").value;
+      if(selectedLevel == "all")
+      {
+        selectedHero.selectedLevel = 0;
+      }
+      else
+      {
+        selectedHero.selectedLevel = parseInt(selectedLevel, 10);
+      }
+
       console.log(JSON.stringify(selectedHero));
       if (!selectedHero) {
           alert("Hero not found. Please try again.");

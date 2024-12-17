@@ -1,265 +1,296 @@
 <html>
-    <head>
-        <title>Character SHeet: ${hero.name}</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-        <style>
-            *{font-family: "Montserrat";}
-            body {
-  line-height: 1.5rem;
-  color: #333;
-  padding: 20px;
-}
-h1 {font-weight: 400;}
-        </style>>
-    </head>
-    <body>
-    </body>
-    <script type="text/javascript">
-        var hero = {
-  "id": "e3d1f924-9013-4b64-b0f5-2b7e4f93f27e",
-  "name": "Zian",
-  "intro": "Zian is a swift and electrifying defender, embodying the untamed spirit of storm and sky with their unique blend of elegance and ferocity.",
-  "primaryClass": "Striker",
-  "secondaryClass": "Defender",
-  "uniqueClassName": "Stormbound Sentinel",
-  "appearance": {
-    "description": "Zian is a mesmerizing hybrid of owl and cat, combining the sleek agility of a feline with the commanding majesty of an owl. Their fur and feathers shift in vibrant shades of blue and green, glowing faintly as if charged with electricity. Lightning bolt motifs run along their wings, tail, and the sides of their sleek body, pulsing with energy. Their large, glowing yellow eyes radiate intelligence and an unyielding focus, while their sharp, tufted ears resemble an owl’s, adding to their regal appearance. Zian’s wings shimmer as they extend, leaving faint, crackling streaks of energy in the air, and their feline paws are tipped with razor-sharp talons that gleam in the light. Their tail, ending in a tuft shaped like a small bolt of lightning, twitches with barely contained energy."
-  },
-  "basicAttack": {
-    "type": "contact",
-    "description": "Zian channels celestial energy through their staff, releasing a radiant beam of starlight that arcs gracefully toward their target."
-  },
-  "abilityProgression": [
-    {
-      "level": 1,
-      "recommendedAttributes": {
-        "health": 3,
-        "attack": 2,
-        "energy": 2
-      },
-      "changes": [
-        ""
-      ],
-      "abilities": [
-        {
-          "name": "Thunderclap Strike",
-          "type": "Active",
-          "specialisation": "Striker",
-          "description": "Zian swoops down with blinding speed, striking enemies with a lightning-infused slash that stuns and damages all enemies in a cone. Stun lasts for 1 round. Moment of Glory roll is reduced to 5 while airborne.",
-          "energyCost": 1
-        },
-        {
-          "name": "Skybound Prowess",
-          "type": "Passive",
-          "specialisation": "Striker",
-          "description": "When Zian uses an ability that puts them in flight, enemies require a roll of 5 or higher to hit Zian. This effect lasts until the end of the next turn.",
-          "energyCost": 0
-        }
-      ]
+
+<head>
+  <title>Character Sheet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+</body>
+<script type="text/javascript">
+  var hero = {
+    "id": "e3d1f924-9013-4b64-b0f5-2b7e4f93f27e",
+    "name": "Zian",
+    "intro": "Zian is a swift and electrifying defender, embodying the untamed spirit of storm and sky with their unique blend of elegance and ferocity.",
+    "primaryClass": "Striker",
+    "secondaryClass": "Defender",
+    "uniqueClassName": "Stormbound Sentinel",
+    "appearance": {
+      "description": "Zian is a mesmerizing hybrid of owl and cat, combining the sleek agility of a feline with the commanding majesty of an owl. Their fur and feathers shift in vibrant shades of blue and green, glowing faintly as if charged with electricity. Lightning bolt motifs run along their wings, tail, and the sides of their sleek body, pulsing with energy. Their large, glowing yellow eyes radiate intelligence and an unyielding focus, while their sharp, tufted ears resemble an owl’s, adding to their regal appearance. Zian’s wings shimmer as they extend, leaving faint, crackling streaks of energy in the air, and their feline paws are tipped with razor-sharp talons that gleam in the light. Their tail, ending in a tuft shaped like a small bolt of lightning, twitches with barely contained energy."
     },
-    {
-      "level": 2,
-      "recommendedAttributes": {
-        "health": 4,
-        "attack": 4,
-        "energy": 3
-      },
-      "changes": [
-        "Added Electro Shield (Active)"
-      ],
-      "abilities": [
-        {
-          "name": "Thunderclap Strike",
-          "type": "Active",
-          "specialisation": "Striker",
-          "description": "Zian swoops down with blinding speed, striking enemies with a lightning-infused slash that stuns and damages all enemies in a cone. Stun lasts for 1 round. Moment of Glory roll is reduced to 5 while airborne.",
-          "energyCost": 1
-        },
-        {
-          "name": "Skybound Prowess",
-          "type": "Passive",
-          "specialisation": "Striker",
-          "description": "When Zian uses an ability that puts them in flight, enemies require a roll of 5 or higher to hit Zian. This effect lasts until the end of the next turn.",
-          "energyCost": 0
-        },
-        {
-          "name": "Electro Shield",
-          "type": "Active",
-          "specialisation": "Defender",
-          "description": "Zian envelops themselves or an ally in crackling energy, absorbing the next 2 points of health loss. Shield lasts for 2 rounds or until depleted.",
-          "energyCost": 1
-        }
-      ]
+    "basicAttack": {
+      "type": "contact",
+      "description": "Zian channels celestial energy through their staff, releasing a radiant beam of starlight that arcs gracefully toward their target."
     },
-    {
-      "level": 3,
-      "recommendedAttributes": {
-        "health": 5,
-        "attack": 6,
-        "energy": 4
+    "abilityProgression": [
+      {
+        "level": 1,
+        "recommendedAttributes": {
+          "health": 3,
+          "attack": 2,
+          "energy": 2
+        },
+        "changes": [
+          ""
+        ],
+        "abilities": [
+          {
+            "name": "Thunderclap Strike",
+            "type": "Active",
+            "specialisation": "Striker",
+            "description": "Zian swoops down with blinding speed, striking enemies with a lightning-infused slash that stuns and damages all enemies in a cone. Stun lasts for 1 round. Moment of Glory roll is reduced to 5 while airborne.",
+            "energyCost": 1
+          },
+          {
+            "name": "Skybound Prowess",
+            "type": "Passive",
+            "specialisation": "Striker",
+            "description": "When Zian uses an ability that puts them in flight, enemies require a roll of 5 or higher to hit Zian. This effect lasts until the end of the next turn.",
+            "energyCost": 0
+          }
+        ]
       },
-      "changes": [
-        "Improved Thunderclap Strike to reduce enemy roll results by 1 for 1 round after the attack.",
-        "Added Gale Cutter (Active)"
-      ],
-      "abilities": [
-        {
-          "name": "Thunderclap Strike",
-          "type": "Active",
-          "specialisation": "Striker",
-          "description": "Zian swoops down with blinding speed, striking enemies with a lightning-infused slash that stuns and damages all enemies in a cone. Stun lasts for 1 round. Reduces enemy roll results by 1 for 1 round. Moment of Glory roll is reduced to 5 while airborne.",
-          "energyCost": 1
+      {
+        "level": 2,
+        "recommendedAttributes": {
+          "health": 4,
+          "attack": 4,
+          "energy": 3
         },
-        {
-          "name": "Skybound Prowess",
-          "type": "Passive",
-          "specialisation": "Striker",
-          "description": "When Zian uses an ability that puts them in flight, enemies require a roll of 5 or higher to hit Zian. This effect lasts until the end of the next turn.",
-          "energyCost": 0
-        },
-        {
-          "name": "Electro Shield",
-          "type": "Active",
-          "specialisation": "Defender",
-          "description": "Zian envelops themselves or an ally in crackling energy, absorbing the next 2 points of health loss. Shield lasts for 2 rounds or until depleted.",
-          "energyCost": 1
-        },
-        {
-          "name": "Gale Cutter",
-          "type": "Active",
-          "specialisation": "Striker",
-          "description": "Zian channels the winds into their claws, delivering a series of precision strikes that feel like a flurry. Mechanically, this counts as a single attack. On a Moment of Glory, the attack deals double Zenpaw's attack damage and disarms the enemy for 1 round, lowering their next roll by 1.",
-          "energyCost": 1
-        }
-      ]
-    },
-    {
-      "level": 4,
-      "recommendedAttributes": {
-        "health": 6,
-        "attack": 8,
-        "energy": 5
+        "changes": [
+          "Added Electro Shield (Active)"
+        ],
+        "abilities": [
+          {
+            "name": "Thunderclap Strike",
+            "type": "Active",
+            "specialisation": "Striker",
+            "description": "Zian swoops down with blinding speed, striking enemies with a lightning-infused slash that stuns and damages all enemies in a cone. Stun lasts for 1 round. Moment of Glory roll is reduced to 5 while airborne.",
+            "energyCost": 1
+          },
+          {
+            "name": "Skybound Prowess",
+            "type": "Passive",
+            "specialisation": "Striker",
+            "description": "When Zian uses an ability that puts them in flight, enemies require a roll of 5 or higher to hit Zian. This effect lasts until the end of the next turn.",
+            "energyCost": 0
+          },
+          {
+            "name": "Electro Shield",
+            "type": "Active",
+            "specialisation": "Defender",
+            "description": "Zian envelops themselves or an ally in crackling energy, absorbing the next 2 points of health loss. Shield lasts for 2 rounds or until depleted.",
+            "energyCost": 1
+          }
+        ]
       },
-      "changes": [
-        "Improved Electro Shield to absorb 3 points of health loss.",
-        "Added Momentum Guard (Passive)"
-      ],
-      "abilities": [
-        {
-          "name": "Thunderclap Strike",
-          "type": "Active",
-          "specialisation": "Striker",
-          "description": "Zian swoops down with blinding speed, striking enemies with a lightning-infused slash that stuns and damages all enemies in a cone. Stun lasts for 1 round. Reduces enemy roll results by 1 for 1 round. Moment of Glory roll is reduced to 5 while airborne.",
-          "energyCost": 1
+      {
+        "level": 3,
+        "recommendedAttributes": {
+          "health": 5,
+          "attack": 6,
+          "energy": 4
         },
-        {
-          "name": "Skybound Prowess",
-          "type": "Passive",
-          "specialisation": "Striker",
-          "description": "When Zian uses an ability that puts them in flight, enemies require a roll of 5 or higher to hit Zian. This effect lasts until the end of the next turn.",
-          "energyCost": 0
-        },
-        {
-          "name": "Electro Shield",
-          "type": "Active",
-          "specialisation": "Defender",
-          "description": "Zian envelops themselves or an ally in crackling energy, absorbing the next 3 points of health loss. Shield lasts for 2 rounds or until depleted.",
-          "energyCost": 1
-        },
-        {
-          "name": "Gale Cutter",
-          "type": "Active",
-          "specialisation": "Striker",
-          "description": "Zian channels the winds into their claws, delivering a series of precision strikes that feel like a flurry. Mechanically, this counts as a single attack. On a Moment of Glory, the attack deals double Zenpaw's attack damage and disarms the enemy for 1 round, lowering their next roll by 1.",
-          "energyCost": 1
-        },
-        {
-          "name": "Momentum Guard",
-          "type": "Passive",
-          "specialisation": "Defender",
-          "description": "When Zian moves during their turn, reduce the next instance of health loss by 1. Effect lasts for 1 round.",
-          "energyCost": 0
-        }
-      ]
-    },
-    {
-      "level": 5,
-      "recommendedAttributes": {
-        "health": 7,
-        "attack": 10,
-        "energy": 6
+        "changes": [
+          "Improved Thunderclap Strike to reduce enemy roll results by 1 for 1 round after the attack.",
+          "Added Gale Cutter (Active)"
+        ],
+        "abilities": [
+          {
+            "name": "Thunderclap Strike",
+            "type": "Active",
+            "specialisation": "Striker",
+            "description": "Zian swoops down with blinding speed, striking enemies with a lightning-infused slash that stuns and damages all enemies in a cone. Stun lasts for 1 round. Reduces enemy roll results by 1 for 1 round. Moment of Glory roll is reduced to 5 while airborne.",
+            "energyCost": 1
+          },
+          {
+            "name": "Skybound Prowess",
+            "type": "Passive",
+            "specialisation": "Striker",
+            "description": "When Zian uses an ability that puts them in flight, enemies require a roll of 5 or higher to hit Zian. This effect lasts until the end of the next turn.",
+            "energyCost": 0
+          },
+          {
+            "name": "Electro Shield",
+            "type": "Active",
+            "specialisation": "Defender",
+            "description": "Zian envelops themselves or an ally in crackling energy, absorbing the next 2 points of health loss. Shield lasts for 2 rounds or until depleted.",
+            "energyCost": 1
+          },
+          {
+            "name": "Gale Cutter",
+            "type": "Active",
+            "specialisation": "Striker",
+            "description": "Zian channels the winds into their claws, delivering a series of precision strikes that feel like a flurry. Mechanically, this counts as a single attack. On a Moment of Glory, the attack deals double Zenpaw's attack damage and disarms the enemy for 1 round, lowering their next roll by 1.",
+            "energyCost": 1
+          }
+        ]
       },
-      "changes": [
-        "Added Tempest Barrage (Active, Once per Adventure)"
-      ],
-      "abilities": [
-        {
-          "name": "Thunderclap Strike",
-          "type": "Active",
-          "specialisation": "Striker",
-          "description": "Zian swoops down with blinding speed, striking enemies with a lightning-infused slash that stuns and damages all enemies in a cone. Stun lasts for 1 round. Reduces enemy roll results by 1 for 1 round. Moment of Glory roll is reduced to 5 while airborne.",
-          "energyCost": 1
+      {
+        "level": 4,
+        "recommendedAttributes": {
+          "health": 6,
+          "attack": 8,
+          "energy": 5
         },
-        {
-          "name": "Skybound Prowess",
-          "type": "Passive",
-          "specialisation": "Striker",
-          "description": "When Zian uses an ability that puts them in flight, enemies require a roll of 5 or higher to hit Zian. This effect lasts until the end of the next turn.",
-          "energyCost": 0
+        "changes": [
+          "Improved Electro Shield to absorb 3 points of health loss.",
+          "Added Momentum Guard (Passive)"
+        ],
+        "abilities": [
+          {
+            "name": "Thunderclap Strike",
+            "type": "Active",
+            "specialisation": "Striker",
+            "description": "Zian swoops down with blinding speed, striking enemies with a lightning-infused slash that stuns and damages all enemies in a cone. Stun lasts for 1 round. Reduces enemy roll results by 1 for 1 round. Moment of Glory roll is reduced to 5 while airborne.",
+            "energyCost": 1
+          },
+          {
+            "name": "Skybound Prowess",
+            "type": "Passive",
+            "specialisation": "Striker",
+            "description": "When Zian uses an ability that puts them in flight, enemies require a roll of 5 or higher to hit Zian. This effect lasts until the end of the next turn.",
+            "energyCost": 0
+          },
+          {
+            "name": "Electro Shield",
+            "type": "Active",
+            "specialisation": "Defender",
+            "description": "Zian envelops themselves or an ally in crackling energy, absorbing the next 3 points of health loss. Shield lasts for 2 rounds or until depleted.",
+            "energyCost": 1
+          },
+          {
+            "name": "Gale Cutter",
+            "type": "Active",
+            "specialisation": "Striker",
+            "description": "Zian channels the winds into their claws, delivering a series of precision strikes that feel like a flurry. Mechanically, this counts as a single attack. On a Moment of Glory, the attack deals double Zenpaw's attack damage and disarms the enemy for 1 round, lowering their next roll by 1.",
+            "energyCost": 1
+          },
+          {
+            "name": "Momentum Guard",
+            "type": "Passive",
+            "specialisation": "Defender",
+            "description": "When Zian moves during their turn, reduce the next instance of health loss by 1. Effect lasts for 1 round.",
+            "energyCost": 0
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "recommendedAttributes": {
+          "health": 7,
+          "attack": 10,
+          "energy": 6
         },
-        {
-          "name": "Electro Shield",
-          "type": "Active",
-          "specialisation": "Defender",
-          "description": "Zian envelops themselves or an ally in crackling energy, absorbing the next 3 points of health loss. Shield lasts for 2 rounds or until depleted.",
-          "energyCost": 1
-        },
-        {
-          "name": "Gale Cutter",
-          "type": "Active",
-          "specialisation": "Striker",
-          "description": "Zian channels the winds into their claws, delivering a series of precision strikes that feel like a flurry. Mechanically, this counts as a single attack. On a Moment of Glory, the attack deals double Zenpaw's attack damage and disarms the enemy for 1 round, lowering their next roll by 1.",
-          "energyCost": 1
-        },
-        {
-          "name": "Momentum Guard",
-          "type": "Passive",
-          "specialisation": "Defender",
-          "description": "When Zian moves during their turn, reduce the next instance of health loss by 1. Effect lasts for 1 round.",
-          "energyCost": 0
-        },
-        {
-          "name": "Tempest Barrage",
-          "type": "Active",
-          "specialisation": "Striker",
-          "description": "Zian summons a storm of lightning bolts that bombard the battlefield, dealing massive area damage and leaving behind static zones that reduce enemy roll results by 1 for 2 rounds.",
-          "energyCost": 2
-        }
-      ]
-    }
-  ],
-  "personality": "Zian is a whirlwind of energy and personality, channeling the untamed power of the storm into a blend of elegance and ferocity. They live for the thrill of motion—whether it’s carving through clouds at dizzying speeds or outmaneuvering foes with lightning-fast precision. Beneath their electrifying confidence and penchant for dramatic entrances lies a sharp mind and a deep sense of justice. Zian’s wit is as quick as their strikes, often accompanied by a sly quip or a challenge to keep up.  \n\nWhile their free-spirited independence might make them seem aloof, Zian’s loyalty to their allies runs as deep as the currents they command. They thrive on the chaos of battle, deftly turning the tide with abilities like *Thunderclap Strike* or shielding allies in a storm-forged *Electro Shield*. Off the battlefield, Zian is a paradoxical mix of competitive and playful, finding joy in kite flying or toasting marshmallows with their own lightning. For Zian, every storm is an opportunity—to protect, to challenge, and to remind the world of the beauty in embracing the untamed.",
-  "quiz": "**What’s your favorite way to spend a free day?**  \nFree days are rare, but when they come, I soar. Loops through storm clouds, dives into wind tunnels—it’s a symphony of motion. The thrill of chasing lightning across the sky never grows old.  \n\n---\n\n**If you could have dinner with any historical figure, who would it be?**  \nNikola Tesla. I feel we’d bond over our mutual love of electricity. Plus, I’d love to see the look on his face when I casually summon lightning to light the table candles.  \n\n---\n\n**What’s your biggest fear?**  \nThe stillness after a storm. It feels unnatural, like the sky holding its breath. I thrive in motion, so the idea of being trapped in silence… no, thank you.  \n\n---\n\n**What’s a guilty pleasure you secretly enjoy?**  \nKite flying. Yes, I know I *am* a living storm, but there’s something charming about coaxing a little piece of fabric to dance with the wind.  \n\n---\n\n**What’s a piece of advice you live by?**  \n“Ride the storm.” Simple, yes, but storms are unpredictable. You can either fight them or flow with them—and only one of those ends well.  \n\n---\n\n**How would you describe your ideal vacation?**  \nVacation? I’d love to glide through the auroras in the Arctic skies, painting trails of lightning in their glow. A storm above the world—pure bliss.  \n\n---\n\n**What’s your greatest strength?**  \nSpeed. Whether it’s a fight or an escape, I’m gone before most can react. You can’t hit what moves faster than thought.  \n\n---\n\n**What’s your greatest weakness?**  \nPatience. I don’t have much of it. If something’s worth doing, it’s worth doing now, with all the energy of a tempest.  \n\n---\n\n**If you could change one thing about yourself, what would it be?**  \nMaybe I’d be a little less… sparky? My energy tends to get out of control when I’m excited, which has ruined more than one perfectly good perch.  \n\n---\n\n**What’s the weirdest thing you’ve ever seen?**  \nA chicken wearing a tin foil hat to ‘protect itself from lightning.’ I wasn’t even mad. Just impressed by the sheer audacity.  \n\n---\n\n**What’s a guilty pleasure snack you secretly enjoy?**  \nToasted marshmallows—roasted over a personal lightning strike, of course. Perfectly charred, no campfire required.  \n\n---\n\n**What’s a piece of music or song that resonates with you?**  \n‘Ride of the Valkyries.’ It’s a storm in musical form, dramatic and untamed, just the way I like it.  \n\n---\n\n**What’s the most absurd thing you’ve ever done?**  \nI once tried to catch lightning in a bottle… with my claws. It worked, technically, but the bottle exploded. Lesson learned: some things aren’t meant to be contained.  \n\n---\n\n**What’s your go-to karaoke song?**  \n‘Thunder’ by Imagine Dragons. It’s practically my anthem, and no one delivers the line ‘Lightning and the thunder’ like I do.  \n\n---\n\n**What’s a strange or endearing habit you have?**  \nI tend to groom my wings mid-conversation. It’s not rude—it’s efficient. Who has time for downtime when you’re as aerodynamic as I am?  \n\n---\n\n**What’s your irrational fear?**  \nBeing grounded—literally. The idea of losing my connection to the skies is… unsettling.  \n\n---\n\n**If you could pick any pet, real or magical, what would it be?**  \nA cloud sprite. Imagine a tiny, fluffy companion that can float alongside me in the storms. Adorable *and* weather-appropriate.  \n\n---\n\n**What’s your dream job if practicality weren’t an issue?**  \nProfessional storm choreographer. Imagine crafting tempests with precision and artistry, each bolt and gust a part of a larger masterpiece.  \n\n---\n\n**What’s the best compliment you’ve ever received?**  \n“You move like the wind itself.” I try to stay humble, but it’s true—I *am* a force of nature.  \n\n---\n\n**What’s your favorite sound?**  \nThe crackle of lightning splitting the air. It’s not just a sound; it’s a promise of power and change.  \n\n---\n\n**If you wrote an autobiography, what would the title be?**  \n*“Thunder in My Veins: The Stormbound Chronicles.”* A bit dramatic, but hey, so am I.  \n\n---\n\n**What’s your most prized possession?**  \nA single lightning bolt, captured in glass. It was a gift from the skies—a reminder of the beauty and fleeting nature of my power.  \n\n---\n\n**What’s your most absurd purchase?**  \nA windsock shaped like a dragon. It’s completely impractical but hilarious to watch when I summon a breeze.  \n\n---\n\n**If you could only say one phrase for the rest of your life, what would it be?**  \n“Ride the storm, for it brings both fury and freedom.” It’s not just a mantra—it’s a way of life.  \n\n---\n\n**What’s the most random fact you know?**  \nWind can actually sing through certain mountain passes. Nature’s symphonies are everywhere if you listen closely enough.\n\n⚡⚡⚡⚡⚡⚡⚡⚡",
-  "favouritePhrases": [
-    "Ride the storm, for it brings both fury and freedom.",
-    "The sky knows no bounds, and neither do I.",
-    "Lightning strikes where it’s needed most."
-  ],
-  "background": "Born of both sky and storm, Zian was created by elemental forces to maintain balance in the heavens. They grew up roaming wild and free, learning to harness the power of lightning and the ferocity of the winds. Legends say they emerged from a great storm that swept across the land, their first cry echoing like a clap of thunder. As they matured, Zian became a guardian of the skies, warding off those who sought to harm the natural world or disrupt the balance of the elements. Their isolation fostered a strong sense of independence, but they couldn’t ignore the cries of the innocent below, leading them to descend from the clouds to fight injustice. Now, Zian is both a protector and a symbol of the storm’s might—a reminder that even in chaos, there is beauty and purpose.",
-  "mantra": "Ride the storm, for it brings both fury and freedom.",
-  "outro": "Zian reminds us that the storm is both a challenge and a gift, calling on us to harness its power and embrace the freedom it brings.",
-  "images": [
-    {
-      "url": "carousel-images/d71fd4df-4d54-4d6e-aca6-3bb3b4d730af.png",
-      "caption": "Zian"
-    }
-  ]
-};
-document.getElementsByTagName("body")[0].innerHTML = `
+        "changes": [
+          "Added Tempest Barrage (Active, Once per Adventure)"
+        ],
+        "abilities": [
+          {
+            "name": "Thunderclap Strike",
+            "type": "Active",
+            "specialisation": "Striker",
+            "description": "Zian swoops down with blinding speed, striking enemies with a lightning-infused slash that stuns and damages all enemies in a cone. Stun lasts for 1 round. Reduces enemy roll results by 1 for 1 round. Moment of Glory roll is reduced to 5 while airborne.",
+            "energyCost": 1
+          },
+          {
+            "name": "Skybound Prowess",
+            "type": "Passive",
+            "specialisation": "Striker",
+            "description": "When Zian uses an ability that puts them in flight, enemies require a roll of 5 or higher to hit Zian. This effect lasts until the end of the next turn.",
+            "energyCost": 0
+          },
+          {
+            "name": "Electro Shield",
+            "type": "Active",
+            "specialisation": "Defender",
+            "description": "Zian envelops themselves or an ally in crackling energy, absorbing the next 3 points of health loss. Shield lasts for 2 rounds or until depleted.",
+            "energyCost": 1
+          },
+          {
+            "name": "Gale Cutter",
+            "type": "Active",
+            "specialisation": "Striker",
+            "description": "Zian channels the winds into their claws, delivering a series of precision strikes that feel like a flurry. Mechanically, this counts as a single attack. On a Moment of Glory, the attack deals double Zenpaw's attack damage and disarms the enemy for 1 round, lowering their next roll by 1.",
+            "energyCost": 1
+          },
+          {
+            "name": "Momentum Guard",
+            "type": "Passive",
+            "specialisation": "Defender",
+            "description": "When Zian moves during their turn, reduce the next instance of health loss by 1. Effect lasts for 1 round.",
+            "energyCost": 0
+          },
+          {
+            "name": "Tempest Barrage",
+            "type": "Active",
+            "specialisation": "Striker",
+            "description": "Zian summons a storm of lightning bolts that bombard the battlefield, dealing massive area damage and leaving behind static zones that reduce enemy roll results by 1 for 2 rounds.",
+            "energyCost": 2
+          }
+        ]
+      }
+    ],
+    "personality": "Zian is a whirlwind of energy and personality, channeling the untamed power of the storm into a blend of elegance and ferocity. They live for the thrill of motion—whether it’s carving through clouds at dizzying speeds or outmaneuvering foes with lightning-fast precision. Beneath their electrifying confidence and penchant for dramatic entrances lies a sharp mind and a deep sense of justice. Zian’s wit is as quick as their strikes, often accompanied by a sly quip or a challenge to keep up.  \n\nWhile their free-spirited independence might make them seem aloof, Zian’s loyalty to their allies runs as deep as the currents they command. They thrive on the chaos of battle, deftly turning the tide with abilities like *Thunderclap Strike* or shielding allies in a storm-forged *Electro Shield*. Off the battlefield, Zian is a paradoxical mix of competitive and playful, finding joy in kite flying or toasting marshmallows with their own lightning. For Zian, every storm is an opportunity—to protect, to challenge, and to remind the world of the beauty in embracing the untamed.",
+    "quiz": "**What’s your favorite way to spend a free day?**  \nFree days are rare, but when they come, I soar. Loops through storm clouds, dives into wind tunnels—it’s a symphony of motion. The thrill of chasing lightning across the sky never grows old.  \n\n---\n\n**If you could have dinner with any historical figure, who would it be?**  \nNikola Tesla. I feel we’d bond over our mutual love of electricity. Plus, I’d love to see the look on his face when I casually summon lightning to light the table candles.  \n\n---\n\n**What’s your biggest fear?**  \nThe stillness after a storm. It feels unnatural, like the sky holding its breath. I thrive in motion, so the idea of being trapped in silence… no, thank you.  \n\n---\n\n**What’s a guilty pleasure you secretly enjoy?**  \nKite flying. Yes, I know I *am* a living storm, but there’s something charming about coaxing a little piece of fabric to dance with the wind.  \n\n---\n\n**What’s a piece of advice you live by?**  \n“Ride the storm.” Simple, yes, but storms are unpredictable. You can either fight them or flow with them—and only one of those ends well.  \n\n---\n\n**How would you describe your ideal vacation?**  \nVacation? I’d love to glide through the auroras in the Arctic skies, painting trails of lightning in their glow. A storm above the world—pure bliss.  \n\n---\n\n**What’s your greatest strength?**  \nSpeed. Whether it’s a fight or an escape, I’m gone before most can react. You can’t hit what moves faster than thought.  \n\n---\n\n**What’s your greatest weakness?**  \nPatience. I don’t have much of it. If something’s worth doing, it’s worth doing now, with all the energy of a tempest.  \n\n---\n\n**If you could change one thing about yourself, what would it be?**  \nMaybe I’d be a little less… sparky? My energy tends to get out of control when I’m excited, which has ruined more than one perfectly good perch.  \n\n---\n\n**What’s the weirdest thing you’ve ever seen?**  \nA chicken wearing a tin foil hat to ‘protect itself from lightning.’ I wasn’t even mad. Just impressed by the sheer audacity.  \n\n---\n\n**What’s a guilty pleasure snack you secretly enjoy?**  \nToasted marshmallows—roasted over a personal lightning strike, of course. Perfectly charred, no campfire required.  \n\n---\n\n**What’s a piece of music or song that resonates with you?**  \n‘Ride of the Valkyries.’ It’s a storm in musical form, dramatic and untamed, just the way I like it.  \n\n---\n\n**What’s the most absurd thing you’ve ever done?**  \nI once tried to catch lightning in a bottle… with my claws. It worked, technically, but the bottle exploded. Lesson learned: some things aren’t meant to be contained.  \n\n---\n\n**What’s your go-to karaoke song?**  \n‘Thunder’ by Imagine Dragons. It’s practically my anthem, and no one delivers the line ‘Lightning and the thunder’ like I do.  \n\n---\n\n**What’s a strange or endearing habit you have?**  \nI tend to groom my wings mid-conversation. It’s not rude—it’s efficient. Who has time for downtime when you’re as aerodynamic as I am?  \n\n---\n\n**What’s your irrational fear?**  \nBeing grounded—literally. The idea of losing my connection to the skies is… unsettling.  \n\n---\n\n**If you could pick any pet, real or magical, what would it be?**  \nA cloud sprite. Imagine a tiny, fluffy companion that can float alongside me in the storms. Adorable *and* weather-appropriate.  \n\n---\n\n**What’s your dream job if practicality weren’t an issue?**  \nProfessional storm choreographer. Imagine crafting tempests with precision and artistry, each bolt and gust a part of a larger masterpiece.  \n\n---\n\n**What’s the best compliment you’ve ever received?**  \n“You move like the wind itself.” I try to stay humble, but it’s true—I *am* a force of nature.  \n\n---\n\n**What’s your favorite sound?**  \nThe crackle of lightning splitting the air. It’s not just a sound; it’s a promise of power and change.  \n\n---\n\n**If you wrote an autobiography, what would the title be?**  \n*“Thunder in My Veins: The Stormbound Chronicles.”* A bit dramatic, but hey, so am I.  \n\n---\n\n**What’s your most prized possession?**  \nA single lightning bolt, captured in glass. It was a gift from the skies—a reminder of the beauty and fleeting nature of my power.  \n\n---\n\n**What’s your most absurd purchase?**  \nA windsock shaped like a dragon. It’s completely impractical but hilarious to watch when I summon a breeze.  \n\n---\n\n**If you could only say one phrase for the rest of your life, what would it be?**  \n“Ride the storm, for it brings both fury and freedom.” It’s not just a mantra—it’s a way of life.  \n\n---\n\n**What’s the most random fact you know?**  \nWind can actually sing through certain mountain passes. Nature’s symphonies are everywhere if you listen closely enough.\n\n⚡⚡⚡⚡⚡⚡⚡⚡",
+    "favouritePhrases": [
+      "Ride the storm, for it brings both fury and freedom.",
+      "The sky knows no bounds, and neither do I.",
+      "Lightning strikes where it’s needed most."
+    ],
+    "background": "Born of both sky and storm, Zian was created by elemental forces to maintain balance in the heavens. They grew up roaming wild and free, learning to harness the power of lightning and the ferocity of the winds. Legends say they emerged from a great storm that swept across the land, their first cry echoing like a clap of thunder. As they matured, Zian became a guardian of the skies, warding off those who sought to harm the natural world or disrupt the balance of the elements. Their isolation fostered a strong sense of independence, but they couldn’t ignore the cries of the innocent below, leading them to descend from the clouds to fight injustice. Now, Zian is both a protector and a symbol of the storm’s might—a reminder that even in chaos, there is beauty and purpose.",
+    "mantra": "Ride the storm, for it brings both fury and freedom.",
+    "outro": "Zian reminds us that the storm is both a challenge and a gift, calling on us to harness its power and embrace the freedom it brings.",
+    "images": [
+      {
+        "url": "carousel-images/d71fd4df-4d54-4d6e-aca6-3bb3b4d730af.png",
+        "caption": "Zian"
+      }
+    ]
+  };
+  document.getElementsByTagName("body")[0].innerHTML = `
 <img style="float:right;height:250px" src="https://d3qf3z2eo3azpe.cloudfront.net/hero-images/${hero.id}.png" />
 <h1>${hero.name}</h1>
+<table>
+  <tr><td class="td-row-header">Class</td><td>${hero.uniqueClassName}</td></tr>
+  <tr><td class="td-row-header">Primary Specialisation</td><td>${hero.primaryClass}</td></tr>
+  <tr><td class="td-row-header">Secondary Specialisation</td><td>${hero.secondaryClass}</td></tr>
+</table>
 `;
-    </script>
+</script>
+<style>
+  * {
+    font-family: "Montserrat";
+  }
+
+  body {
+    line-height: 1.5rem;
+    color: #333;
+    padding: 20px;
+  }
+
+  h1 {
+    font-weight: 400;
+  }
+
+  table{
+    border: 1px solid #333;
+    border-spacing: 0;
+  }
+
+  tr, td{
+    margin: 0;
+    padding: 10px;
+  }
+
+  td.td-row-header {
+    background-color: #333;
+    color: #eee;
+    width: 200px;
+  }
+</style>
+
 </html>
